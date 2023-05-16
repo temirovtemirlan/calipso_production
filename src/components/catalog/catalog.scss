@@ -1,0 +1,22 @@
+@import '../main/_index';
+
+.catalog__pc {
+    padding: 20px;
+}
+.product__title {
+    color: $dark-color !important;
+}
+
+// Filter 
+
+.filter__block {
+    row-gap: 16px;
+    margin-bottom: 100px;
+}
+.filter__flex {
+    column-gap: 16px;
+}
+.accent--active {
+    background-color: $dark-color !important;
+    color: $light-color !important;
+}

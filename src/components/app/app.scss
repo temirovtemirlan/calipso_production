@@ -1,0 +1,56 @@
+$light-color: #fff;
+$dark-color: #2A2B40;
+$secondary-color: #808080;
+
+::-webkit-scrollbar { width: 8px; }
+
+::-webkit-scrollbar-track {
+  background: #f7efef;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a5a2a2;
+  border-radius: 5px;
+}
+body {
+    overflow-x: hidden;
+}
+html, body {
+    box-sizing: border-box;
+}
+.body__unlocked {
+    overflow-y: visible;
+}
+.body__locked {
+    overflow: hidden !important;
+}
+$light-color: #fff;
+$dark-color: #2A2B40;
+$secondary-color: #808080;
+
+@font-face {
+    font-family: Prata;
+    // src: url(../font/Prata-Regular.ttf);
+    font-weight: 400;
+}
+
+::selection {
+    background-color: #adadad;
+    opacity: .5;
+}
+[class*="__container"] {
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// mixin
+@mixin bg__img($url, $pos) {
+    background-image: url($url);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: $pos;
+}
+

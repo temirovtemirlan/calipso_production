@@ -1,0 +1,50 @@
+@import '../main/_index.scss';
+
+// About water
+
+.about {
+
+    &__inner {
+        padding-top: 130px;
+        padding-bottom: 332px;
+    }
+    &__title {
+        color: $dark-color;
+    }
+
+    &__title--my {
+    }
+
+    &__block {
+    }
+
+    &__item {
+        width: 295px;
+    }
+
+    &__img {
+    }
+    &__img--my {
+        margin: 50px 0px ;
+    }
+    &__subject {
+        font-size: 18px;
+        font-weight: 600;
+        
+        display: block;
+
+        color: $dark-color;
+
+        text-transform: uppercase;
+
+        &--mb {
+            margin-bottom: 40px;
+        }
+    }
+    &__descr {
+        font-size: 16px;
+        font-weight: 400;
+        color: $secondary-color;
+
+    }
+}

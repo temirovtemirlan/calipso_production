@@ -1,0 +1,95 @@
+@import '../main/_index.scss';
+
+.history {
+
+    overflow: hidden;
+
+    &--blue {
+        background-color: #6EB772;
+    }
+    &--bg {
+        background-color: #3AB8FF;
+    }
+    &__inner--py {
+        padding-top: 130px;
+        padding-bottom: 290px;
+    }
+    &__inner {
+    }
+
+    &__container {
+    }
+
+    &__title {
+        margin-bottom: 46px;
+
+    }
+
+    &__title--my {
+    }
+
+    &__block {
+        // column-gap: 122px;
+    }
+
+    &__content {
+    }
+
+    &__descr {
+        font-size: 16px;
+        color: $light-color;
+        font-weight: 400;
+
+    }
+    &__descr--my {
+        margin-bottom: 100px;
+    }
+
+    &__img {
+    }
+    &__list {
+        padding-left: 0;
+        display: flex;
+        row-gap: 16px;
+        flex-direction: column;
+    }
+    &__list--mx {
+        margin-bottom: 52px;
+    }
+
+    &__list-item {
+        list-style-type: none;
+        color: #fff;
+
+        display: flex;
+        column-gap: 16px;
+        align-items: center;
+       
+        & span {
+            width: 42px;
+            height: 42px;
+            border-radius: 100px;
+            background-color: #fff;
+            color: #6EB772;
+
+            padding: 8px;
+            padding-left: 13px;
+        }
+    }
+    &__title--sec-mx {
+        margin-bottom: 92px;
+    }
+
+    &__parallax--effects {
+
+        position: absolute;
+        bottom: 0;
+        left: -100px;
+        width: 120%;
+
+        &-02 {
+            bottom: 0;
+
+        }
+    }
+}

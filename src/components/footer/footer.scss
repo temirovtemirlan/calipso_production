@@ -1,0 +1,73 @@
+@import '../main/_index.scss';
+
+.footer {
+    color: $light-color;
+
+    &--bg {
+        background-color: #2A2B40;
+
+    }
+    &__calipso {
+        padding: 130px 0 108px 0 ;
+    }
+
+    &__container {
+    }
+
+    &__contact {
+    }
+
+    &__content {
+
+    }
+
+    &__list {
+        row-gap: 5px;
+        flex: 0 1 30%;
+
+        padding: 0;
+        list-style-type: none;
+        color: $light-color;
+
+        li > a {
+            color: $light-color;
+            text-decoration: none;
+        }
+    }
+    &__content {
+        flex: 1 0 auto;
+    }
+
+    &__link {
+    }
+
+    &__copyright {
+        margin-top: 130px;
+        position: relative;
+        p {
+            color: $light-color
+        }
+        &::before {
+            content: "";
+            width: 100%;
+            height: 142px;
+            @include bg__img("../../img/footer.svg", center);
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            background-size: contain;
+            object-fit: contain;
+        }
+    }
+
+    &__media {
+        column-gap: 20px;
+    }
+    &__paragraph {
+        width: 100%;
+        max-width: 500px;
+        color: $light-color;
+        line-height: 1.7;
+    }
+
+}

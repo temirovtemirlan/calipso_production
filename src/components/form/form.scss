@@ -1,0 +1,97 @@
+@import '../main/_index.scss';
+
+.contact {
+
+    color: $light-color;
+    &--px {
+    }
+    &--py {
+        padding-top: 130px;
+        padding-bottom: 158px;
+    }
+    &--bg {
+        background-color: #DC7E49;
+    }
+
+    &__inner {
+    }
+    &__headline {
+        font-size: 36px;
+        line-height: 1;
+        font-weight: 600;
+    }
+
+    &__title {
+        margin-bottom: 41px;
+    }
+
+    &__forms {
+    }
+
+    &__descr {
+        row-gap: 21px;
+    }
+
+    &__content {
+    }
+
+    &__form {
+        row-gap: 20px ;
+    }
+
+    &__input {
+        width: 100%;
+        color: #2A2B40;
+        font-size: 16px;
+        padding: 15px 0 15px 30px ;
+        border-radius: 100px;
+        border: none;
+        outline: 0px solid rgb(255, 255, 255);
+        transition: border .4s ease 0s;
+
+        &:focus {
+            outline: 1px solid rgb(194, 194, 194);
+        }
+    }
+    &__btn {
+        width: 100%;
+        max-width: 300px;
+
+        border: 1px solid #fff;
+        padding: 15px 80px;
+        background: transparent;
+        border-radius: 50px;
+        
+        color: $light-color;
+        text-transform: uppercase;
+        
+    }
+    &__block-input {
+        column-gap: 20px;
+    }
+
+}
+
+// Form controll
+.react-tel-input .form-control {
+    height: 100% !important;
+    border-radius: 50px !important;
+
+}
+
+.react-tel-input .country-list .country-name {
+    color: #252525 ;
+}
+.react-tel-input .flag-dropdown, .react-tel-input .flag-dropdown.open .selected-flag{
+    background-color: transparent !important;
+    border: none !important;
+}
+.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+    background-color: transparent !important;
+}
+.react-tel-input .selected-flag {
+    padding: 0 0 0 16px !important;
+}
+.react-tel-input .country-list {
+    border-radius: 4px !important;
+}
