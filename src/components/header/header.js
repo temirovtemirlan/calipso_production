@@ -71,11 +71,5 @@ const Header = ({cartToOpen}) => {
     )
 }
 
-const HeaderLink = () => {
-    return (
-        <>
-        </>
-    )
-}
 
 export default Header;

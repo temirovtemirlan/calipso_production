@@ -1,5 +1,5 @@
+// catalog.js
 import React, { useState, useEffect } from "react";
-
 import img1 from '../../img/catalog01.png';
 import img2 from '../../img/catalog02.png';
 import img3 from '../../img/catalog03.png';
@@ -7,7 +7,7 @@ import img4 from '../../img/catalog04.png';
 import img5 from '../../img/catalog05.png';
 import './catalog.scss';
 
-const Catalog = ({addToCartS}) => {
+const Catalog = ({ addToCart }) => {
     const [filter, setFilter] = useState("Все");
     const [load, setLoad] = useState(true);
     const [error, setError] = useState(false);
@@ -111,7 +111,7 @@ const Catalog = ({addToCartS}) => {
 
                     {
                         filteredProducts.map((product, id) => (
-                            <СatalogBone key={id} data={product} img={product.img} addToCartS={() => addToCartS(product)}/>
+                            <СatalogBone key={id} data={product} img={product.img} addToCart={() => addToCart(product)}/>
                           ))
                     }
                     </div>
@@ -123,7 +123,7 @@ const Catalog = ({addToCartS}) => {
 }
 
 
-const СatalogBone = ({data, addToCartS}) => {
+const СatalogBone = ({data, addToCart}) => {
 
     const { img, descr, liter, price } = data;
 
@@ -142,7 +142,7 @@ const СatalogBone = ({data, addToCartS}) => {
                 </div>
 
                 <div className="">
-                    <button onClick={addToCartS} className="btn w-100 btn-primary product__btn--blue">Добавить в корзину</button>
+                    <button onClick={addToCart} className="btn w-100 btn-primary product__btn--blue">Добавить в корзину</button>
                 </div>
 
             </div>
