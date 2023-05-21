@@ -19,8 +19,9 @@ import fuller from '../../server/content.json';
 
 const App = () => {
     const [opened, setOpened] = useState(false);
-    const [item, setCart] = useState([]);
-    const [quantity, setQuantity] = useState(0);
+    const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
+    const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
+
     const dataList01 = [
         {title: "Экологически дружелюбных материалов"},
         {title: "Снижение отходов"},
@@ -28,7 +29,7 @@ const App = () => {
     ]
 
     useEffect(() => {
-        // designModes();
+        designModes();
     })
 
     const designModes = () => {
@@ -41,35 +42,31 @@ const App = () => {
 
     const removeFromCart = (product) => {
         setCart(prevCart => {
-            // Фильтруем корзину, удаляя выбранный товар
-            const updatedCart = prevCart.filter(item => item.descr !== product.descr);
-    
-            // Пересчитываем общее количество товаров в обновленной корзине
-            const updatedQuantity = updatedCart.reduce((total, item) => total + item.quantity, 0);
-    
-            // Устанавливаем новое состояние quantity
-            setQuantity(updatedQuantity);
-    
-            // Возвращаем обновленную корзину
-            return updatedCart;
+            const newCart = prevCart.filter(item => item.descr !== product.descr);
+            Cookies.set('cart', JSON.stringify(newCart));
+            return newCart;
         });
     };
     
     const increaseQuantity = (product) => {
         addToCart(product);
-        setQuantity(quantity => quantity + 1);
+        setQuantity(quantity + 1);
+        Cookies.set('quantity', quantity + 1);
     };
 
     const decreaseQuantity = (product) => {
         setCart(prevCart => {
-            return prevCart.map(item => {
+            const newCart = prevCart.map(item => {
                 if (item.descr === product.descr) {
                     return {...item, quantity: item.quantity - 1};
                 }
                 return item;
             }).filter(item => item.quantity > 0);
+            Cookies.set('cart', JSON.stringify(newCart));
+            return newCart;
         });
-        setQuantity(quantity => quantity - 1);
+        setQuantity(quantity - 1);
+        Cookies.set('quantity', quantity - 1);
     };
 
     const addToCart = (product) => {
@@ -77,17 +74,22 @@ const App = () => {
             // проверяем, есть ли уже этот товар в корзине
             const existingProduct = prevCart.find(item => item.descr === product.descr);
     
+            let newCart;
             if (existingProduct) {
                 // если товар уже есть, увеличиваем его количество
-                return prevCart.map(item =>
+                newCart = prevCart.map(item =>
                     item.descr === product.descr ? {...item, quantity: item.quantity + 1} : item
                 );
             } else {
                 // если товара еще нет, добавляем его с количеством 1 и сохраняем изображение товара
-                return [...prevCart, {...product, quantity: 1, img: product.img}];
+                newCart = [...prevCart, {...product, quantity: 1, img: product.img}];
             }
+
+            Cookies.set('cart', JSON.stringify(newCart));
+            return newCart;
         });
         setQuantity(quantity + 1);
+        Cookies.set('quantity', quantity + 1);
     };
 
     return (
