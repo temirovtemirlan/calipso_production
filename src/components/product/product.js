@@ -6,8 +6,11 @@ import './product.scss';
 import 'swiper/swiper-bundle.css';
 import mountains from '../../img/mountains.png'; // mountains
 import land from '../../img/land.png'; // land
-import bottles from '../../img/bottles.png'; // bottles
-import bottlesss from '../../img/bottles__back.png'; // bottles
+
+import limonProduct from '../../img/limon.png'; // limon 
+import GasProduct from '../../img/gas.png'; // gas
+import WaterProduct from '../../img/water.png'; // water
+import NineTeen from '../../img/ninteen.png'; // water
 
 SwiperCore.use([Navigation, Autoplay, EffectFade, Pagination]);
 
@@ -15,20 +18,19 @@ function Product() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const swiperRef = useRef(null);
 
-      // Задайте ваши описания здесь
   const descriptions = [
-    "Описание для слайда 1",
-    "Описание для слайда 2",
-    "Описание для слайда 3",
-    "Описание для слайда 4",
-    "Описание для слайда 4",
-    "Описание для слайда 4",
-    "Описание для слайда 4"
+    "Зеленый чай Calipso - это идеальный напиток для тех, кто ценит здоровый образ жизни и хочет наслаждаться естественным вкусом премиум-чая. Добытая с глубины 176 метров, наша вода обеспечивает наилучший баланс минералов для превращения высококачественных зеленых чайных листьев в освежающий напиток. Ваша чашка чая никогда не была такой приятной.",
+
+    "Газированная вода Calipso - это настоящее удовольствие, которое оживляет и освежает в течение всего дня. Используя наш источник воды с глубины 176 метров, мы создаем воду с нежным и естественным вкусом, усиленную тонкими пузырьками газа. Это идеальное средство для утоления жажды или просто для любителей более динамичных напитков.",
+
+    "Негазированная вода Calipso представляет собой воплощение чистоты и свежести. С глубины 176 метров мы добываем самую чистую, балансированную по минералам воду, которую затем бережно бутилируем, сохраняя все ее природные свойства. Это идеальный вариант для тех, кто предпочитает простую, но качественную воду.",
+
+    "Наша бутилированная вода в объеме 18,9 литров – это универсальное решение для больших семей, офисов или мероприятий. Это та же великолепная вода, добытая с глубины 176 метров, но в удобном большом объеме. С ней у вас всегда будет достаточно чистой воды для любых потребностей."
   ];
 
   const title = [
-    "Заголовок 1",
-    "Заголовок 2",
+    "Зеленый чай лимон",
+    "Газированная вода",
     "Заголовок 3",
     "Заголовок 4",
     "Заголовок 5",
@@ -36,16 +38,17 @@ function Product() {
   ];
 
   const liter = [
-    "5 литров",
-    "2 литров",
-    "0.5 литров",
-    "200 литров",
-    "200 литров",
-    "200 литров"
+    "0,5 литров",
+    "0,5 литров",
+    "0,5 литров",
+    "18,9 литров литров"
   ];
+
+  const imagesBottles = [limonProduct,GasProduct, WaterProduct, NineTeen] ;
 
     
   const slides = [];
+  
   for (let i = 0; i < 7; i += 1) {
     slides.push(
       <SwiperSlide key={`slide-${i}`}>
@@ -60,11 +63,13 @@ function Product() {
 
 
   return (
+    <>
+    
     <div className="product-slider product__container">
         <div className="product__inner">
             <h2 className="title product__title">Продукция</h2>
 
-            <div className="row">
+            <div className="row d-flex justify-content-between w-100">
                 <Swiper
                     dots="true"
                     className="col-lg-5"
@@ -77,31 +82,14 @@ function Product() {
                     onSwiper={(swiper) => console.log("onSwiper")}
                     pagination={{ clickable: true, el: ".swiper-pagination" }} 
                 >
-                    <SwiperSlide>
-                        <img src={bottles} alt="bottles" />
-                    </SwiperSlide>
 
-                    <SwiperSlide>
-                        <img src={bottlesss} alt="bottles" />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <img src={bottles} alt="bottles" />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <img src={bottles} alt="bottles" />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <img src={bottles} alt="bottles" />
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <img src={bottles} alt="bottles" />
-                    </SwiperSlide>
-                    
-
+                  {
+                    imagesBottles.map((img, id) => (
+                      <SwiperSlide key={id}>
+                        <img className="slider__img" src={img} alt="bottles" />
+                      </SwiperSlide>
+                    ))
+                  }
                 </Swiper>
                 <div className="product-details col-lg-5">
                     <h3 className="product__subject">{title[currentSlide]}</h3>
@@ -115,12 +103,13 @@ function Product() {
 
         </div>
 
+
+    </div>
         <div className="parallax">
             <img className="parallax__effects history__parallax--effects parallax-img" src={mountains} alt="mountains" data-speed="10"/>
             <img className="parallax__effects history__parallax--effects history__parallax--effects-02 parallax-img" src={land} alt="land" data-speed="20"/>
         </div>
-
-    </div>
+    </>
   );
 }
 

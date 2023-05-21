@@ -11,10 +11,10 @@
 
 .filter__block {
     row-gap: 16px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 .filter__flex {
-    column-gap: 16px;
+    gap: 10px;
 }
 .accent--active {
     background-color: $dark-color !important;

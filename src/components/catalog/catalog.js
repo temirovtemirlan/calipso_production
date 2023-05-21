@@ -87,7 +87,7 @@ const Catalog = ({ addToCart }) => {
 
                     <div className="filter d-flex w-100 filter__block row">
 
-                        <div className="filter__flex d-flex">
+                        <div className="filter__flex d-flex flex-wrap w-100">
 
                         {
                             filterButton.map((button, id) => {

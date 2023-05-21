@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import './fixedCart.scss';
 
 const FixedCart = ({quantity, handleCloseCart}) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        if (quantity > 0) {
-            setIsVisible(true);
-            setTimeout(() => {
-                setIsVisible(false);
-            }, 2000);
-        }
-    }, [quantity]);
 
     return (
         <>
-            { quantity ? <div className={`fixed__cart ${isVisible ? '' : 'hidden'}`}>
+            { quantity ? <div className="fixed__cart">
                 <button onClick={handleCloseCart} className="fixed__btn">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1H5.54251L9.425 21.849C9.70972 23.3502 11.0168 24.4373 12.5439 24.4373H30.3516" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>

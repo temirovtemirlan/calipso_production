@@ -8,7 +8,7 @@
         @include bg__img('../../img/product-img.png', center);
     }
     &__inner {
-        padding-top: 130px;
+        padding-top: 60px;
         padding-bottom: 253px;  
         display: flex;
         flex-direction: column;
@@ -113,3 +113,8 @@
 // myPathStroke stroke="#36A9E1" 
 // myPathFill
 // mySvg fill=""
+
+.slider__img {
+    width: 80%;
+
+}
