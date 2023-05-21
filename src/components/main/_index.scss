@@ -1,6 +1,7 @@
 $light-color: #fff;
 $dark-color: #2A2B40;
 $secondary-color: #808080;
+$primary-blue: #36A9E1;
 
 // ! ================================== 
 @font-face {
@@ -58,7 +59,6 @@ $secondary-color: #808080;
 
 }
 
-
 // General image
 .title {
     font-size: 50px;
@@ -66,8 +66,6 @@ $secondary-color: #808080;
     text-transform: uppercase;
     color: $light-color;
 }
-
-
 
 // ! ============= media query =============== ! //
 @media (max-width: 1390px) {

@@ -21,7 +21,7 @@ const History = ({bgColor,title,description,showButton, img, list }) => {
                                 {description}
                             </p>
 
-                            {showButton ? <button class="accent__btn accent__btn--lg">Купить сейчас</button> : null}
+                            {showButton ? <button className="accent__btn accent__btn--lg">Купить сейчас</button> : null}
                         </div>
 
                         <div data-aos="fade-left" data-aos-duration="1400" className="col-lg-6 col-md-12 history__img"><img className="w-100" src={img} alt="image"/></div>

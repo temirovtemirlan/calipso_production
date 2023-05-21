@@ -1,0 +1,81 @@
+@import '../main/_index.scss';
+
+
+@mixin defaultBtn() {
+    background: transparent;
+    border: none;
+}
+.cart {
+    width: 100%;
+    height: 100vh;
+
+    background-color: #fff;
+    position: fixed;
+    top: 200px;
+    left: 0;
+
+    z-index: 10;
+
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 20px 20px 0px 0px;
+    padding: 40px 20px 0 20px;
+
+    overflow-y: auto;
+
+}
+.cart--close {
+    position: absolute;
+    top: 60px;
+    right: 50px ;
+    @include defaultBtn;
+}
+.container--cart-mt {
+    margin-top: 120px;
+}
+
+// Custom container
+.container__cart {
+    width: 100%;
+    max-width: 870px;
+    margin-left: auto;
+    margin-right: auto;
+    // map-remove($map: , $keys: )
+
+}
+.cart__item {
+    column-gap: 32px;
+}
+.cart__info {
+    row-gap: 20px;
+}
+.cart__block {
+    padding: 20px 0;
+}
+.cart__block:not(:last-child) {
+    border-bottom: 1px solid #E7E7E7;
+}
+.cart--controller {
+    @include defaultBtn;
+
+}
+.cart--num {
+    font-size: 16px;
+    font-weight: 700;
+}
+.cart--controllers {
+    column-gap: 8px ;
+}
+
+// !
+.cart {
+    transition: all .8s ease 0s;
+}
+.open {
+    transform: translateY(0%);
+}
+.close {
+    transform: translateY(100%);
+}
+.cart__buttons--controller {
+    column-gap: 10px;
+}

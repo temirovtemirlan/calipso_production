@@ -1,0 +1,27 @@
+.myButton {
+    background: transparent;
+    border: none;
+}
+.mySvg {
+    fill: transparent;
+}
+.myPathStroke {
+    stroke: #36A9E1;
+}
+.myPathFill {
+    fill: #36A9E1;
+}
+.myButton {
+
+    &:hover{
+        .mySvg {
+            fill: #36A9E1;
+    }
+        .myPathFill {
+            fill: #fff;
+        }
+    }
+}
+.mirrorX {
+    transform: scaleX(-1);
+}

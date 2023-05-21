@@ -1,58 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import img1 from '../../img/catalog01.png';
+import img2 from '../../img/catalog02.png';
+import img3 from '../../img/catalog03.png';
+import img4 from '../../img/catalog04.png';
+import img5 from '../../img/catalog05.png';
 import './catalog.scss';
-import catalImg from '../../img/catalog01.png';
 
-
-const Catalog = () => {
+const Catalog = ({addToCartS}) => {
     const [filter, setFilter] = useState("Все");
+    const [load, setLoad] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        setLoad(false);
+    })
+
+    const images = [img1, img2, img3, img4, img5, img1, img1];
 
     const allProducts = [
         {
-            img: catalImg,
-            descr: "Негазированная питьевая вода Calipso",
+            descr: "Газированная питьевая вода Calipso",
             liter: "0,5 литр",
             price: "100 сом",
-            type: "Все"
+            types: ["Все", "Газированные напитки", "1 литр"]
         },
         {
-            img: catalImg,
-            descr: "Негазированная питьевая вода Calipso",
+            descr: "Ванильная питьевая вода Calipso",
             liter: "0,5 литр",
             price: "100 сом",
-            type: "Сладкие напитки"
+            types: ["Все", "Сладкие напитки", "1 литр"]
         },
         {
-            img: catalImg,
-            descr: "Негазированная питьевая вода Calipso",
+            descr: "Виноградная питьевая вода Calipso",
             liter: "0,5 литр",
             price: "100 сом",
-            type: null
+            types: ["Все", "Сладкие напитки", "1 литр"]
         },
         {
-            img: catalImg,
             descr: "Негазированная питьевая вода Calipso",
-            liter: "0,5 литр",
-            price: "100 сом",
-            type: null
-        },
-        {
-            img: catalImg,
-            descr: "Негазированная питьевая вода Calipso",
-            liter: "0,5 литр",
-            price: "100 сом",
-            type: null
-        },
-        {
-            img: catalImg,
-            descr: "",
             liter: "1 литр",
             price: "100 сом",
-            type: "сладкие напитки"
+            types: ["Все", "Питьевые напитки", "1 литр"]
+        },
+        {
+            descr: "Зеленый чай - лимон",
+            liter: "1 литр",
+            price: "100 сом",
+            types: ["Все", "Сладкие напитки", "1 литр"]
+        },
+        {
+            descr: "Газированная питьевая вода Calipso",
+            liter: "1 литр",
+            price: "100 сом",
+            types: ["Все", "Газированные напитки", "1 литр"]
+        },
+        {
+            descr: "Газированная питьевая вода Calipso",
+            liter: "1 литр",
+            price: "100 сом",
+            types: ["Все", "Газированные напитки", "1 литр"]
+        },
+        {
+            descr: "Газированная питьевая вода Calipso",
+            liter: "1 литр",
+            price: "100 сом",
+            types: ["Все", "Газированные напитки", "1 литр"]
         }
     ];
 
-    const filteredProducts = allProducts.filter(product => filter === "Все" ? true : product.type?.toLowerCase() === filter.toLowerCase());
+    let productsWithImages = [...allProducts]; // создаем копию массива allProducts
+
+    for (let i = 0; i < productsWithImages.length; i++) {
+        productsWithImages[i].img = images[i % images.length]; // используем оператор % для циклического присвоения изображений
+    }
+
+    const filteredProducts = allProducts.filter(product => filter === "Все" ? true : product.types?.map(type => type.toLowerCase()).includes(filter.toLowerCase()));
     const filterButton = ['Все','сладкие напитки','газированные напитки','питьевые напитки','5 литр','1 литр', '0.5 литр'];
 
     return (
@@ -67,9 +90,9 @@ const Catalog = () => {
                         <div className="filter__flex d-flex">
 
                         {
-                            filterButton.map(button => {
+                            filterButton.map((button, id) => {
                                 return (
-                                    <button className={`accent__btn accent__btn--dark ${filter === button ? 'accent--active' : ''}`} onClick={() => setFilter(button)}>
+                                    <button key={id} className={`accent__btn accent__btn--dark ${filter === button ? 'accent--active' : ''}`} onClick={() => setFilter(button)}>
                                         {button}
                                     </button>
                                 )
@@ -80,11 +103,17 @@ const Catalog = () => {
                     </div>
 
                     <div  data-aos="fade-up" data-aos-duration="1500"  className="row row-gap-3 column-gap-3 product__catalog d-flex justify-content-lg-center justify-content-center  justify-content-md-center w-100">
+                    {/* { error ? "Ошибка данных, пожалуйста перезагрузите страницу" : load ? "Нет данных" :
+                        filteredProducts.map((product, id) => (
+                            <СatalogBone key={id} data={product} />
+                        ))
+                    } */}
+
                     {
-    filteredProducts.map((product, id) => (
-        <СatalogBone key={id} data={product} />
-    ))
-}
+                        filteredProducts.map((product, id) => (
+                            <СatalogBone key={id} data={product} img={product.img} addToCartS={() => addToCartS(product)}/>
+                          ))
+                    }
                     </div>
                 </div>
             </div>
@@ -94,7 +123,7 @@ const Catalog = () => {
 }
 
 
-const СatalogBone = ({data}) => {
+const СatalogBone = ({data, addToCartS}) => {
 
     const { img, descr, liter, price } = data;
 
@@ -102,7 +131,7 @@ const СatalogBone = ({data}) => {
         <>
         <div className="col-lg-3 col-md-6 col-sm-12 product__item d-flex flex-column product__catalog_items">
             <img src={img} alt="catalog01"/>
-            <div className="d-flex justify-content-between flex-column w-100">
+            <div className="d-flex justify-content-between flex-column w-100 catalog__item">
 
                 <div className="catalog__pc">
                     <p className="about__descr about__descr-500 ">{descr}</p>
@@ -113,7 +142,7 @@ const СatalogBone = ({data}) => {
                 </div>
 
                 <div className="">
-                    <button className="btn w-100 btn-primary product__btn--blue">Купить</button>
+                    <button onClick={addToCartS} className="btn w-100 btn-primary product__btn--blue">Добавить в корзину</button>
                 </div>
 
             </div>

@@ -14,12 +14,7 @@
         flex-direction: column;
         position: relative;
         z-index: 2;
-    }
-
-    &__inner--my {
-    }
-
-    &__container {
+        row-gap: 30px;
     }
     &__title {
         color: $dark-color;
@@ -36,18 +31,7 @@
         color: $secondary-color;
         margin: 10px 0 32px 0;
         display: block;
-
     }
-
-    &__block {
-        // column-gap: 124px;
-    }
-
-    &__content {
-    }
-
-    // Part 2
-
     &--bg {
         background-color: #ECF3FF;
     }
@@ -65,7 +49,6 @@
         border-radius: 10px;
 
         padding-bottom: 24px;
-
     }
     &__btn--blue {
         background-color: #36A9E1 !important;
@@ -83,6 +66,11 @@
     &__img--back {
         position: absolute;
     }
+    &__btn-default {
+        background-color: transparent;
+        border: none;
+        padding: 2px;
+    }
 }   
 
 // Parallax
@@ -98,9 +86,30 @@
         width: 120%;
 
         &-02 {
-            bottom: 0;
-
+            bottom: 0;  
         }
     }
 }
 
+
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
+}
+
+.swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+
+    cursor: pointer;
+}
+.bullet-container {
+    display: flex;
+    column-gap: 35px;
+
+    margin-top: 60px;
+}
+// myButton // кнопка
+// myPathStroke stroke="#36A9E1" 
+// myPathFill
+// mySvg fill=""

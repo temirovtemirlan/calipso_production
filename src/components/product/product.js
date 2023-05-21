@@ -1,45 +1,129 @@
-import React from "react"; 
+import { useState, useRef } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Autoplay, EffectFade, Pagination  } from 'swiper';
+import ButtonSwitch from "../button-slider/";
+import './product.scss';
+import 'swiper/swiper-bundle.css';
+import mountains from '../../img/mountains.png'; // mountains
+import land from '../../img/land.png'; // land
+import bottles from '../../img/bottles.png'; // bottles
+import bottlesss from '../../img/bottles__back.png'; // bottles
 
-import './product.scss' // styles product blog
+SwiperCore.use([Navigation, Autoplay, EffectFade, Pagination]);
 
-import bottles from '../../img/bottles__back.png'; // bottles back
-import bottle from '../../img/bottles__fwr.png'; // bottles forward
-import parallaxFirst from '../../img/mountains.png' // mountains
-import parallaxSec from '../../img/land.png' // mountains
+function Product() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const swiperRef = useRef(null);
 
-const Product = () => {
-    return (
-        <>
-        <section>
-            <div className="product">
-                <div className="product__inner pb-0 product__inner--my product__container">
-                    <h2 className="product__title title product__title">продукция</h2>
+      // Задайте ваши описания здесь
+  const descriptions = [
+    "Описание для слайда 1",
+    "Описание для слайда 2",
+    "Описание для слайда 3",
+    "Описание для слайда 4",
+    "Описание для слайда 4",
+    "Описание для слайда 4",
+    "Описание для слайда 4"
+  ];
 
-                    <div className="row product__block d-flex justify-content-between">
+  const title = [
+    "Заголовок 1",
+    "Заголовок 2",
+    "Заголовок 3",
+    "Заголовок 4",
+    "Заголовок 5",
+    "Заголовок 6"
+  ];
 
-                        <div className="col-lg-6 product__content" >
-                            <img className="product__img--back" data-aos="fade-down-right" data-aos-duration="1500" data-aos-delay="300" src={bottles} alt="bottle_back"/>
-                            <img className="product__img--fwr" data-aos="fade-down-left" data-aos-duration="1500" src={bottle} alt="bottle_fwr"/>
-                        </div>
+  const liter = [
+    "5 литров",
+    "2 литров",
+    "0.5 литров",
+    "200 литров",
+    "200 литров",
+    "200 литров"
+  ];
 
-                        <div className="col-lg-6 product__content" data-aos="fade-left" data-aos-duration="1500" >
-                            <h3 className="product__subject">негазированная вода</h3>
-                            <span className="product__subtitle">5 л</span>
-                            <p className="about__descr">
-                                Текст-заполнитель — это текст, который имеет некоторые характеристики реального письменного текста, но является случайным набором слов или сгенерирован иным образом. Его можно использовать для отображения образца шрифтов, создания текста для тестирования или обхода спам-фильтра.
-                            </p>
-                        </div>
+    
+  const slides = [];
+  for (let i = 0; i < 7; i += 1) {
+    slides.push(
+      <SwiperSlide key={`slide-${i}`}>
+        <div>Slide {i}</div>
+      </SwiperSlide>
+    );
+  }
 
-                    </div>
-                </div>
-                <div className="parallax">
-                    <img className="parallax__effects parallax--effects parallax-img" src={parallaxFirst} alt="mountains" data-speed="10"/>
-                    <img className="parallax__effects parallax--effects parallax--effects-02 parallax-img" src={parallaxSec}  alt="land" data-speed="20"/>
+  const handleSlideChange = (swiper) => {
+    setCurrentSlide(swiper.realIndex);
+  };
+
+
+  return (
+    <div className="product-slider product__container">
+        <div className="product__inner">
+            <h2 className="title product__title">Продукция</h2>
+
+            <div className="row">
+                <Swiper
+                    dots="true"
+                    className="col-lg-5"
+                    ref={swiperRef}
+                    loop
+                    autoplay={{ delay: 800 }}
+                    speed={600}
+                    effect="fade-in"
+                    onSlideChange={handleSlideChange}
+                    onSwiper={(swiper) => console.log("onSwiper")}
+                    pagination={{ clickable: true, el: ".swiper-pagination" }} 
+                >
+                    <SwiperSlide>
+                        <img src={bottles} alt="bottles" />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <img src={bottlesss} alt="bottles" />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <img src={bottles} alt="bottles" />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <img src={bottles} alt="bottles" />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <img src={bottles} alt="bottles" />
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <img src={bottles} alt="bottles" />
+                    </SwiperSlide>
+                    
+
+                </Swiper>
+                <div className="product-details col-lg-5">
+                    <h3 className="product__subject">{title[currentSlide]}</h3>
+                    <span className="product__subtitle">{liter[currentSlide]}</span>
+                    <p className="about__descr">{descriptions[currentSlide]}</p>
+                    <ButtonSwitch mirrorX={true} func={() => swiperRef.current.swiper.slidePrev()}/>
+                    <ButtonSwitch func={() => swiperRef.current.swiper.slideNext()}/>
+                    <div className="bullet-container"><div className="swiper-pagination"></div></div>
                 </div>
             </div>
-        </section>
-        </>
-    )
+
+        </div>
+
+        <div className="parallax">
+            <img className="parallax__effects history__parallax--effects parallax-img" src={mountains} alt="mountains" data-speed="10"/>
+            <img className="parallax__effects history__parallax--effects history__parallax--effects-02 parallax-img" src={land} alt="land" data-speed="20"/>
+        </div>
+
+    </div>
+  );
 }
+
+// onClick={() => swiperRef.current.swiper.slideNext()}
 
 export default Product;
