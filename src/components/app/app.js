@@ -28,14 +28,6 @@ const App = () => {
         {title: "Вклад в охрану окружающей среды"}
     ]
 
-    useEffect(() => {
-        designModes();
-    })
-
-    const designModes = () => {
-        document.designMode = "on";
-    }
-
     const handleCloseCart = () => {
         setOpened(!opened);
     };
