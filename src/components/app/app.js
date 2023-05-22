@@ -12,27 +12,15 @@ import Form from '../form/';
 import Footer from '../footer/';
 import Cart from "../cart/";
 import FixedCart from "../fixedCart/";
-import Loader from '../loader/';
 
 import historyImg from '../../img/historyimg.png'; // ! png
 import fuller from '../../server/content.json';
-import { clear } from "@testing-library/user-event/dist/clear";
 
 
 const App = () => {
     const [opened, setOpened] = useState(false);
     const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
     const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
-    const [loader, setLoader] = useState(false);
-
-    useEffect(() => {
-        let timer = setTimeout(() => {
-            setLoader(!loader);
-        }, 3000);
-
-        clearInterval(timer)
-    });
-    
 
     const dataList01 = [
         {title: "Экологически дружелюбных материалов"},
@@ -57,6 +45,7 @@ const App = () => {
             return newCart;
         });
     };
+    
     
     const increaseQuantity = (product) => {
         addToCart(product);
@@ -104,7 +93,6 @@ const App = () => {
 
     return (
         <React.Fragment>
-            {loader ? <Loader/> : null}
             <Header cartToOpen={handleCloseCart}/>
             <About/>
             <History bgColor={"#3AB8FF"} title={"история"} description={fuller.content} showButton={true} img={historyImg} />
