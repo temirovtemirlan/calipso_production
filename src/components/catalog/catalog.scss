@@ -1,5 +1,21 @@
 @import '../main/_index';
 
+
+@media (max-width: 450px) {
+    .cart {
+        width: 100% !important;
+        left: 0 !important;
+    }
+    .cart__block {
+        row-gap: 20px ;
+    }
+    
+.buttons__controller {
+    width: 100%;
+}
+
+}
+
 .catalog__pc {
     padding: 20px;
 }

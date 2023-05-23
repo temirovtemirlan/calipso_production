@@ -1,10 +1,16 @@
-import React from "react";
-import './about.scss';
+import React, { useEffect } from "react";
 import aboutOne from '../../img/about__img-01.svg';
 import aboutTwo from '../../img/about__img-02.svg';
 import aboutThree from '../../img/about__img-03.svg';
+import AOS from 'aos';
+import './about.scss';
 
 const About = () => {
+
+    useEffect(() => {
+        AOS.init();
+    })
+
     const aboutItems = [
         {   
             img: aboutOne,
@@ -56,7 +62,7 @@ const About = () => {
 
 const AboutWater = ({ data, alt  }) => {
     return (
-        <div className="col-lg-4 col-md-3 col-sm-12 about__item" data-aos-delay={data.delay} data-aos="fade-up" data-aos-duration={data.duration}>
+        <div className="col-lg-4 col-md-3 col-sm-12 about__item" data-aos="fade-up" data-aos-duration={data.duration}>
             <div className="about__img about__img--my">
                 <img src={data.img} alt={alt} />
             </div>

@@ -6,21 +6,22 @@ import './app.scss'; // Main sstyles
 import Header from "../header/";
 import About from "../about/";
 import History from "../history/";
-import Product from "../product/";
+import  Product from "../product/";
 import Catalog from "../catalog/";
 import Form from '../form/';
 import Footer from '../footer/';
 import Cart from "../cart/";
 import FixedCart from "../fixedCart/";
+import Loader from '../loader/';
 
 import historyImg from '../../img/historyimg.png'; // ! png
 import fuller from '../../server/content.json';
-
 
 const App = () => {
     const [opened, setOpened] = useState(false);
     const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
     const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
+    const [loader, setLoader] = useState(true);
 
     const dataList01 = [
         {title: "Экологически дружелюбных материалов"},
@@ -31,7 +32,6 @@ const App = () => {
     const handleCloseCart = () => {
         setOpened(!opened);
     };
-
     const removeFromCart = (product) => {
         setCart(prevCart => {
             const newCart = prevCart.filter(item => item.descr !== product.descr);
@@ -45,8 +45,6 @@ const App = () => {
             return newCart;
         });
     };
-    
-    
     const increaseQuantity = (product) => {
         addToCart(product);
         setQuantity(quantity + 1);
@@ -91,17 +89,34 @@ const App = () => {
         Cookies.set('quantity', quantity + 1);
     };
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoader(false);
+        }, 3000     );
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        if(loader) {
+            document.body.style.overflowY = 'hidden';
+        } else {
+            document.body.style.overflowY = '';
+        }
+    }, [loader]);
+
     return (
         <React.Fragment>
+            {loader ? <Loader/> : null }
             <Header cartToOpen={handleCloseCart}/>
-            <About/>
-            <History bgColor={"#3AB8FF"} title={"история"} description={fuller.content} showButton={true} img={historyImg} />
+            <About id="about"/>
+            <History bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
             <Product/>
             
-            <Catalog addToCart={addToCart}/>
+            <Catalog id="catalog" addToCart={addToCart}/>
 
-            <History bgColor={"#6EB772"} title={"экология"} list={dataList01} description={fuller.content} showButton={false} img={historyImg} />
-            <Form/>
+            <History bgColor={"#6EB772"} title={"Чистая вода"} list={dataList01} description={fuller.contentFilter} showButton={false} img={historyImg} />
+            <Form id="contacts"/>
             <Footer/>
             <Cart handleCloseCart={handleCloseCart} opened={opened} item={item} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
             <FixedCart  handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>

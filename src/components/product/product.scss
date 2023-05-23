@@ -82,7 +82,6 @@
 
         position: absolute;
         bottom: 0;
-        left: -100px;
         width: 120%;
 
         &-02 {
@@ -115,3 +114,12 @@
 // mySvg fill=""
 
 .slider__img {width: 80%;}
+
+@media (max-width: 450px) {
+    .slider__img {
+        width: 100%;
+    }
+    .product__inner {
+        padding-bottom: 50px;
+    }
+}

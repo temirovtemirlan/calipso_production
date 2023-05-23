@@ -93,3 +93,11 @@
         }
     }
 }
+
+
+@media (max-width: 450px) {
+    .history__parallax--effects {
+        left: 0;
+        width: 100%;
+    }
+}

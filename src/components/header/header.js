@@ -1,10 +1,11 @@
 import React from "react";
 
-import './header.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-scroll';
 
 import bgCalipso from '../../img/logo-calipso.svg';
 import bg from '../../img/bg.png';
+import './header.scss';
 
 const Header = ({cartToOpen}) => {
 
@@ -18,10 +19,10 @@ const Header = ({cartToOpen}) => {
                     <div className="header__logo"><img src={bgCalipso} alt="calipso"/></div>
 
                     <nav className="header__menu d-flex align-items-center">
-                        <a className="header__link link" href="#">О компании</a>
-                        <a className="header__link link" href="#">Каталог</a>
-                        <a className="header__link link" href="#">Тарифы</a>
-                        <a className="header__link link" href="#">Контакты</a>
+                        <Link to="about" smooth={true} duration={100} className="header__link link">О компании</Link>
+                        <Link to="catalog" smooth={true} duration={100} className="header__link link">Каталог</Link>
+                        {/* <Link to="" smooth={true} duration={100} className="header__link link" href="#"></Link> */}
+                        <Link to="contacts" smooth={true} duration={100} className="header__link link"l>Контакты</Link>
                         <a className="header__link link header--number" href="tel:+996555777888">+996 555 777 888</a>
                         <button onClick={cartToOpen} className="add-to-card">
                         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">

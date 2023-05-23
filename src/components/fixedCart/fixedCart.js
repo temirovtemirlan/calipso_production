@@ -1,4 +1,5 @@
 import React from "react";
+
 import './fixedCart.scss';
 
 const FixedCart = ({quantity, handleCloseCart}) => {
