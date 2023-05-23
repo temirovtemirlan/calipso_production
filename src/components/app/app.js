@@ -6,7 +6,7 @@ import './app.scss'; // Main sstyles
 import Header from "../header/";
 import About from "../about/";
 import History from "../history/";
-import  Product from "../product/";
+import Product from "../product/";
 import Catalog from "../catalog/";
 import Form from '../form/';
 import Footer from '../footer/';
@@ -14,6 +14,7 @@ import Cart from "../cart/";
 import FixedCart from "../fixedCart/";
 import Loader from '../loader/';
 import ScrollToTopBtn from "../scrollToTopBtn/";
+import FixedHead from '../fixedHead/';
 
 import historyImg from '../../img/historyimg.png'; // ! png
 import fuller from '../../server/content.json';
@@ -109,6 +110,7 @@ const App = () => {
     return (
         <React.Fragment>
             {loader ? <Loader/> : null }
+            <FixedHead cartToOpen={handleCloseCart} />
             <Header cartToOpen={handleCloseCart}/>
             <About id="about"/>
             <History bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />

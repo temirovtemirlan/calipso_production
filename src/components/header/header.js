@@ -3,7 +3,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-scroll';
 
-import bgCalipso from '../../img/logo-calipso.svg';
+import Logo from '../../img/logo-calipso.svg';
 import bg from '../../img/bg.png';
 import './header.scss';
 
@@ -16,7 +16,7 @@ const Header = ({cartToOpen}) => {
                 <div className="header__container d-flex justify-content-between w-100 align-items-start">
                     <div className="adsf d-flex justify-content-between w-100">
 
-                    <div className="header__logo"><img src={bgCalipso} alt="calipso"/></div>
+                    <div className="header__logo"><img src={Logo} alt="calipso"/></div>
 
                     <nav className="header__menu d-flex align-items-center">
                         <Link to="about" smooth={true} duration={100} className="header__link link">О компании</Link>

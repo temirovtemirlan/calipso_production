@@ -1,0 +1,17 @@
+.fixed__header {
+    width: 100%;
+    position: fixed;
+    z-index: 4;
+    background-color: #2A2B40;
+
+    transition: transform .7s ease 0s;
+}
+.fixed__inner {
+    padding: 20px 0;
+}
+.fixed__show {
+    transform: translateY(0);
+}
+.fixed__hide {
+    transform: translateY(-100%);
+}
