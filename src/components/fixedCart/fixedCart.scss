@@ -7,7 +7,7 @@
     background-color: #ffffff;
 
     position: fixed;
-    bottom: 50px ;
+    bottom: 140px ;
     right: 50px ;
 
     border: none ;
@@ -16,6 +16,10 @@
     padding: 10px 0 9px 0;
 
     z-index: 3;
+
+    &:hover {
+        opacity: 0.7;
+    }
 
 }
 

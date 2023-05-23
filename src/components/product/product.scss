@@ -95,7 +95,6 @@
 .swiper-button-prev {
   display: none;
 }
-
 .swiper-pagination-bullet {
     width: 12px !important;
     height: 12px !important;
@@ -103,9 +102,13 @@
     cursor: pointer;
 }
 
+.swiper-pagination {
+    width: auto !important;
+}
 .bullet-container {
     display: flex;
     column-gap: 35px;
+    position: relative;
 
     margin-top: 60px;
 }

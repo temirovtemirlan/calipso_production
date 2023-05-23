@@ -13,6 +13,7 @@ import Footer from '../footer/';
 import Cart from "../cart/";
 import FixedCart from "../fixedCart/";
 import Loader from '../loader/';
+import ScrollToTopBtn from "../scrollToTopBtn/";
 
 import historyImg from '../../img/historyimg.png'; // ! png
 import fuller from '../../server/content.json';
@@ -120,6 +121,7 @@ const App = () => {
             <Footer/>
             <Cart handleCloseCart={handleCloseCart} opened={opened} item={item} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
             <FixedCart  handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
+            <ScrollToTopBtn/>
         </React.Fragment>
     )
 }

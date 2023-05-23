@@ -69,7 +69,6 @@ function Product() {
 
             <div className="row d-flex justify-content-between w-100">
                 <Swiper
-                    
                     dots="true"
                     className="col-lg-5"
                     ref={swiperRef}
@@ -90,7 +89,7 @@ function Product() {
                     ))
                   }
                 </Swiper>
-                <div className="product-details col-lg-5">
+                <div className="product-details col-lg-5" data-aos="fade-left" data-aos-duration="1500">
                     <h3 className="product__subject">{title[currentSlide]}</h3>
                     <span className="product__subtitle">{liter[currentSlide]}</span>
                     <p className="about__descr">{descriptions[currentSlide]}</p>
