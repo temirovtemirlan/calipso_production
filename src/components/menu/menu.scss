@@ -1,0 +1,17 @@
+.menu__header {
+    width: 100%;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+
+    transition: transform .7s ease 0s;
+}
+.menu__inner {
+    padding: 20px 0;
+}
+.menu__show {
+    transform: translateY(0);
+}
+.menu__hide {
+    transform: translateY(-100%);
+}
