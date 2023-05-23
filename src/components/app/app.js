@@ -14,7 +14,7 @@ import Cart from "../cart/";
 import FixedCart from "../fixedCart/";
 import Loader from '../loader/';
 import ScrollToTopBtn from "../scrollToTopBtn/";
-import FixedHead from '../fixedHead/';
+import FixedHead from '../fixedMenu/';
 import Menu from '../menu/';
 
 import historyImg from '../../img/historyimg.png'; // ! png
@@ -124,7 +124,8 @@ const App = () => {
             <Footer/>
             <Cart handleCloseCart={handleCloseCart} opened={opened} item={item} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
             <FixedCart  handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
-            <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/>
+            {/* <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/> */}
+            {/* <FixedHead/> */}
             <ScrollToTopBtn/>
         </React.Fragment>
     )
