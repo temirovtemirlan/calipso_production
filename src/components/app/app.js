@@ -1,5 +1,5 @@
 // app.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
 
 import './app.scss'; // Main sstyles 
@@ -25,6 +25,7 @@ const App = () => {
     const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
     const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
     const [loader, setLoader] = useState(true);
+    const targetRef = useRef(null);
 
     const dataList01 = [
         {title: "Экологически дружелюбных материалов"},
@@ -92,6 +93,17 @@ const App = () => {
         Cookies.set('quantity', quantity + 1);
     };
 
+    const scrollToTarget = () => {
+        if (targetRef.current) {
+          targetRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+    const cartClosed = () => {
+        handleCloseCart();
+        scrollToTarget();
+      };
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoader(false);
@@ -117,12 +129,22 @@ const App = () => {
             <History bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
             <Product/>
             
-            <Catalog id="catalog" addToCart={addToCart}/>
+            <Catalog ref={targetRef} id="catalog" addToCart={addToCart}/>
 
             <History bgColor={"#6EB772"} title={"Чистая вода"} list={dataList01} description={fuller.contentFilter} showButton={false} img={historyImg} />
             <Form id="contacts"/>
             <Footer/>
-            <Cart handleCloseCart={handleCloseCart} opened={opened} item={item} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity}/>
+            <Cart
+                handleCloseCart={handleCloseCart}
+                opened={opened}
+                item={item}
+                removeFromCart={removeFromCart}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                targetRef={targetRef}
+                closeCart={cartClosed}
+                scrollToTarget={scrollToTarget}
+                />
             <FixedCart  handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
             {/* <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/> */}
             {/* <FixedHead/> */}

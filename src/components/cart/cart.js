@@ -2,7 +2,10 @@
 import React, { useState, useEffect } from "react";
 import './cart.scss';
 import cartFirst from '../../img/cart01.png';
-const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity}) => {
+import svgBottles from '../../img/svgBottle.svg' //
+// import pngBottles from '../../img/pngBottle.png'
+
+const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, closeCart, targetRef}) => {
 
     return (
         <div className={`cart ${opened ? 'open'  : 'close'} `}>
@@ -48,7 +51,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
 
                                     <div className="d-flex cart__buttons--controller">
                                         <button className="accent__buy accent__btn accent__btn--dark w-100">
-                                            Купить
+                                            Заказать
                                         </button>
                                         <button  onClick={() => removeFromCart(item)} className="accent__delete accent__btn accent__btn--dark w-100">
                                             Удалить
@@ -56,7 +59,16 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                     </div>
                                 </div>
 
-                            </div>)) : <p>Ничего нет</p>}
+                            </div>)) : <div className="cart-empty">
+                                <div className="cart-empty__inner d-flex align-items-center justify-content-center">
+                                    <div><img src={svgBottles} alt="empty" /></div>
+                                    <div className="cart-empty__content">
+                                        <h4>В корзине пока нет товаров</h4>
+                                        <p>Ваша корзина ощущается легкой как вода. Добавьте свежие продукты и наслаждайтесь вкусом артезианской воды</p>
+                                        <button onClick={closeCart} className="accent__btn accent__btn--dark">Начать покупки</button>
+                                    </div>
+                                </div>
+                            </div>}
                     </div>
                 
             </div>

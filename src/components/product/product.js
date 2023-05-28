@@ -62,7 +62,7 @@ function Product() {
 
   return (
     <>
-    
+    <section style={{overflowX: "hidden"}}>
     <div className="product-slider product__container">
         <div className="product__inner">
             <h2 className="title product__title">Продукция</h2>
@@ -107,6 +107,7 @@ function Product() {
             <img className="parallax__effects history__parallax--effects parallax-img" src={mountains} alt="mountains" data-speed="10"/>
             <img className="parallax__effects history__parallax--effects history__parallax--effects-02 parallax-img" src={land} alt="land" data-speed="20"/>
         </div>
+    </section>
     </>
   );
 }
