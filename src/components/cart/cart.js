@@ -58,7 +58,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                     </div>
                                 </div>
 
-                                </div>)) : <p>Ничего нет</p>}
+                                </div>)) : <p>dasdнет</p>}
                     </div>
                 
             </div>
