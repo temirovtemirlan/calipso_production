@@ -21,50 +21,58 @@ const Catalog = ({ addToCart }) => {
     const allProducts = [
         {
             descr: "Газированная питьевая вода Calipso",
-            liter: "0,5 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Газированные напитки", "1 литр"]
         },
         {
             descr: "Ванильная питьевая вода Calipso",
-            liter: "0,5 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Сладкие напитки", "1 литр"]
         },
         {
             descr: "Виноградная питьевая вода Calipso",
-            liter: "0,5 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Сладкие напитки", "1 литр"]
         },
         {
             descr: "Негазированная питьевая вода Calipso",
-            liter: "1 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Питьевые напитки", "1 литр"]
         },
         {
             descr: "Зеленый чай - лимон",
-            liter: "1 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Сладкие напитки", "1 литр"]
         },
         {
             descr: "Газированная питьевая вода Calipso",
-            liter: "1 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Газированные напитки", "1 литр"]
         },
         {
             descr: "Газированная питьевая вода Calipso",
-            liter: "1 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Газированные напитки", "1 литр"]
         },
         {
             descr: "Газированная питьевая вода Calipso",
-            liter: "1 литр",
             price: "100 сом",
+            quantity: "18 штук / 1 блок",
+            volume: "0,5 литр",
             types: ["Все", "Газированные напитки", "1 литр"]
         }
     ];
@@ -125,7 +133,7 @@ const Catalog = ({ addToCart }) => {
 
 const СatalogBone = ({data, addToCart}) => {
 
-    const { img, descr, liter, price } = data;
+    const { img, descr, volume, price, quantity } = data;
 
     return (
         <>
@@ -135,9 +143,22 @@ const СatalogBone = ({data, addToCart}) => {
 
                 <div className="catalog__pc">
                     <p className="about__descr about__descr-500 ">{descr}</p>
-                    <div className="d-flex justify-content-between w-100">
-                        <span>{liter}</span>
-                        <b>{price}</b>
+                    <div className="d-flex w-100 flex-column">
+                        <div className="d-flex  justify-content-between ">
+                            <span>Стоимость: </span>
+                            <b>{price}</b>
+                        </div>
+
+                        <div className="d-flex  justify-content-between ">
+                            <span>Количество:</span>
+                            <b>{quantity}</b>
+                        </div>
+
+                        <div className="d-flex  justify-content-between ">
+                            <span>Объем: </span>
+                            <b>{volume}</b>
+                        </div>
+
                     </div>
                 </div>
 

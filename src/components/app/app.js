@@ -109,6 +109,8 @@ const App = () => {
             setLoader(false);
         }, 3000     );
 
+
+
         return () => clearTimeout(timer);
     }, []);
 
