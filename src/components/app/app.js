@@ -17,7 +17,7 @@ import ScrollToTopBtn from "../scrollToTopBtn/";
 import FixedHead from '../fixedMenu/';
 import Menu from '../menu/';
 
-import historyImg from '../../img/historyimg.png'; // ! png
+import historyImg from '../../img/historyimg.png'; 
 import fuller from '../../server/content.json';
 
 const App = () => {

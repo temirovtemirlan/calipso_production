@@ -8,7 +8,7 @@ const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB}) => {
             <div className="header__logo"><img src={Logo} alt="calipso"/></div>
 
             <nav className="header__menu d-flex align-items-center">
-                <a className="header__link link"  href="#">О кdsdfомпании</a>
+                <a className="header__link link"  href="#">О компании</a>
                 <a className="header__link link"  href="#">Каталог</a>
                 <a className="header__link link"  href="#">Контакты</a>
                 <a className="header__link link header--number" href="tel:+996555777888">+996 555 777 888</a>

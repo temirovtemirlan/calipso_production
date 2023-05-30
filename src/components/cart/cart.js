@@ -5,8 +5,12 @@ import cartFirst from '../../img/cart01.png';
 import emptyBottle from '../../img/emptyBottle.svg';
 
 const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity}) => {
+    const [ order, setOrder ] = useState(true);
 
-    
+
+    const handleOrderOfProduct = () => {
+        console.log(order);
+    }    
 
     return (
         <div className={`cart ${opened ? 'open'  : 'close'} `}>
@@ -121,7 +125,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
             </div>
 
         <div className="cart__buy"> 
-            <button disabled={!item.length ?? true} className={`accent__btn accent__btn--dark accent--active w-50 ${!item.length ? "accent__btn--disable" : "" }`}>
+            <button onClick={handleOrderOfProduct} disabled={!item.length ?? true} className={`accent__btn accent__btn--dark accent--active w-50 ${!item.length ? "accent__btn--disable" : "" }`}>
                 Заказать
             </button>
         </div>
