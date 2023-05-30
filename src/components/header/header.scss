@@ -126,12 +126,12 @@
         padding: 20px 30px;
         transition: transform .8s ease 0s;
 
-        $headerSize: 28px ;
+        $headerSize: 18px ;
 
         & > a {
             color: $dark-color;
             font-size: $headerSize;
-            font-weight: 800;
+            font-weight: 600;
         }
 
         transform: translateX(100%);

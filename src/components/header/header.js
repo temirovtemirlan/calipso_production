@@ -6,6 +6,7 @@ import Menu from "../menu/";
 
 import Logo from '../../img/logo-calipso.svg';
 import bg from '../../img/bg.png';
+// ! =====================
 import './header.scss';
 
 const Header = ({cartToOpen}) => {
