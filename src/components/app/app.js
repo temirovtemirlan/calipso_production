@@ -34,6 +34,8 @@ const App = () => {
         setOpened(!opened);
     };
 
+
+
     /* закрытие popup окна */
     const removeFromCart = (product) => {
         setCart(prevCart => {

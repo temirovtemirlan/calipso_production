@@ -12,37 +12,10 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         e.preventDefault();
     }
 
-    // let totalPrice = item.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
-    // const totalPrice = item.reduce((acc, item) => acc + item.price, 0);
-    // const totalPrice = item.map(item => item.reduce((elem, currentValue) => elem + currentValue.price, 0));
-    // const totalPrice = item.reduce((accu))
-    // const totalPrice = item.reduce((accumulator, current) => {
-
-    //     accumulator + current.price
-    // }, 0);
-
-    // const existingItem = item.find((el) => el.price === item.map(el => el.price));
-    // const sis = item.find(el => el.price === )
-
-    // const totalPrice = item.reduce((acc, item) => {
-    //     const existingItem = acc.find((el) => el.id === item.id);
-    //     if (existingItem) {
-    //       existingItem.price += item.price;
-    //     } else {
-    //       acc.push({ ...item });
-    //     }
-    //     return acc;
-    //   }, []);
-
     const totalPrice = item.reduce((accumulator, currentValue) => {
         return (currentValue.price * currentValue.quantity) + accumulator
     }, 0)
-      
-    // console.log(totalPrice) 
-      
-    //   console.log("sdafd " + JSON.stringify(item.map(item => item.price)));
-    //   console.log("sdafd " + JSON.stringify(item.map(item => item.price)));
-    // console.log(sis)
+
     return (
         <>
         <div className="form__order">
