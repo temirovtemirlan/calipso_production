@@ -7,7 +7,7 @@ import img4 from '../../img/catalog04.png';
 import img5 from '../../img/catalog05.png';
 import './catalog.scss';
 
-const Catalog = ({ addToCart }) => {
+const Catalog = ({ addToCart, allProducts }) => {
     const [filter, setFilter] = useState("Все");
     const [load, setLoad] = useState(true);
     const [error, setError] = useState(false);
@@ -17,65 +17,6 @@ const Catalog = ({ addToCart }) => {
     })
 
     const images = [img1, img2, img3, img4, img5, img1, img1];
-
-    const allProducts = [
-        {
-            descr: "Газированная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Газированные напитки", "1 литр"]
-        },
-        {
-            descr: "Ванильная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Сладкие напитки", "1 литр"]
-        },
-        {
-            descr: "Виноградная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Сладкие напитки", "1 литр"]
-        },
-        {
-            descr: "Негазированная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Питьевые напитки", "1 литр"]
-        },
-        {
-            descr: "Зеленый чай - лимон",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Сладкие напитки", "1 литр"]
-        },
-        {
-            descr: "Газированная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Газированные напитки", "1 литр"]
-        },
-        {
-            descr: "Газированная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Газированные напитки", "1 литр"]
-        },
-        {
-            descr: "Газированная питьевая вода Calipso",
-            price: "100 сом",
-            quantity: "18 штук / 1 блок",
-            volume: "0,5 литр",
-            types: ["Все", "Газированные напитки", "1 литр"]
-        }
-    ];
 
     let productsWithImages = [...allProducts]; // создаем копию массива allProducts
 
@@ -133,7 +74,7 @@ const Catalog = ({ addToCart }) => {
 
 const СatalogBone = ({data, addToCart}) => {
 
-    const { img, descr, volume, price, quantity } = data;
+    const { img, descr, volume, price, quantity, char } = data;
 
     return (
         <>
@@ -146,17 +87,17 @@ const СatalogBone = ({data, addToCart}) => {
                     <div className="d-flex w-100 flex-column">
                         <div className="d-flex  justify-content-between ">
                             <span>Стоимость: </span>
-                            <b>{price}</b>
+                            <b>{price} сом</b>
                         </div>
 
                         <div className="d-flex  justify-content-between ">
-                            <span>Количество:</span>
-                            <b>{quantity}</b>
+                            <span>Литраж:</span>
+                            <b>{volume}</b>
                         </div>
 
                         <div className="d-flex  justify-content-between ">
                             <span>Объем: </span>
-                            <b>{volume}</b>
+                            <b>{char}</b>
                         </div>
 
                     </div>

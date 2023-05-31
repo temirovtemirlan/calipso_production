@@ -1,19 +1,19 @@
 // cart.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './cart.scss';
 import cartFirst from '../../img/cart01.png';
 import emptyBottle from '../../img/emptyBottle.svg';
 
-const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity}) => {
+const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, handleOrderOfProduct}) => {
     const [ order, setOrder ] = useState(true);
 
 
-    const handleOrderOfProduct = () => {
-        console.log(order);
-    }    
+    const cartCloseAuto = e => {
+        // console.log(e.target !==)
+    }
 
     return (
-        <div className={`cart ${opened ? 'open'  : 'close'} `}>
+        <div onClick={cartCloseAuto} className={`cart ${opened ? 'open'  : 'close'} `}>
 
                 <button onClick={handleCloseCart} className="cart--close">
                 <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
 
                                                     <div className="d-flex  justify-content-between settings__item">
                                                         <span>Объем: </span>
-                                                        <b>{item.volume}</b>
+                                                        <b>{item.char}</b>
                                                     </div>
 
                                                 </div>
@@ -55,7 +55,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                         <button className="cart--controller cart--remove" onClick={() => decreaseQuantity(item)}>
                                         <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="17.4998" cy="18.2419" r="16.9998" stroke="#2A2B40"/>
-                                            <path d="M10.5 18.2422H24.4998" stroke="#2A2B40" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M10.5 18.2422H24.4998" stroke="#2A2B40" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                         </button>
                                         <div className="cart--num">
@@ -64,7 +64,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                         <button className="cart--controller cart--add" onClick={() => increaseQuantity(item)}>
                                         <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="17.5" cy="18.2422" r="17" stroke="#2A2B40"/>
-                                            <path d="M17.5 11.2422L17.5 25.2422M10.5 18.2422L24.5 18.2422" stroke="#2A2B40" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M17.5 11.2422L17.5 25.2422M10.5 18.2422L24.5 18.2422" stroke="#2A2B40" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
                                         </button>
                                     </div>
@@ -83,7 +83,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                             <button className="cart--controller cart--remove" onClick={() => decreaseQuantity(item)}>
                                             <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="17.4998" cy="18.2419" r="16.9998" stroke="#2A2B40"/>
-                                                <path d="M10.5 18.2422H24.4998" stroke="#2A2B40" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M10.5 18.2422H24.4998" stroke="#2A2B40" strokeLinecap="round" strokeLinejoin="round"/>
                                             </svg>
                                             </button>
                                             <div className="cart--num">
@@ -92,7 +92,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                             <button className="cart--controller cart--add" onClick={() => increaseQuantity(item)}>
                                             <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="17.5" cy="18.2422" r="17" stroke="#2A2B40"/>
-                                                <path d="M17.5 11.2422L17.5 25.2422M10.5 18.2422L24.5 18.2422" stroke="#2A2B40" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M17.5 11.2422L17.5 25.2422M10.5 18.2422L24.5 18.2422" stroke="#2A2B40" strokeLinecap="round" strokeLinejoin="round"/>
                                             </svg>
                                             </button>
                                         </div>
@@ -113,7 +113,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                 <div className="cart-empty">
                                 <div className="cart-empty__inner d-flex flex-column align-items-center"> 
                                     <div><img src={emptyBottle} alt="empty" /></div>
-                                    <div className="cart-empty__content">
+                                    <div className="cart-empty__content text-center">
                                         <h4>В корзине пока нет товаров</h4>
                                         <p>Ваша корзина ощущается легкой как вода. Добавьте продукты и наслаждайтесь вкусом артезианской воды</p>
                                     </div>

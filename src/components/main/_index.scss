@@ -3,6 +3,11 @@ $dark-color: #2A2B40;
 $secondary-color: #808080;
 $primary-blue: #36A9E1;
 
+@mixin defaultBtn() {
+    background: transparent;
+    border: none;
+}
+
 // ! ================================== 
 @font-face {
     font-family: Prata;

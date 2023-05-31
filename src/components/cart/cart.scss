@@ -1,10 +1,7 @@
 @import '../main/_index.scss';
 
 
-@mixin defaultBtn() {
-    background: transparent;
-    border: none;
-}
+
 .cart {
     width: 50%;
     height: 80vh;
@@ -35,7 +32,7 @@
     }
 }
 .container--cart-mt {
-    margin-top: 120px;
+    margin-top: 80px;
 }
 
 // Custom container
@@ -44,7 +41,6 @@
     margin-right: auto;
     max-width: 870px;
     min-height: 100%;
-    padding-bottom: 200px;
     width: 100%;
 }
 .cart__item {
@@ -53,7 +49,7 @@
     max-width: 500px;
 }
 .cart__info {
-    row-gap: 20px;
+    row-gap: 4px;
 }
 .cart__block {
     padding: 20px 0;
@@ -94,8 +90,9 @@
     border-radius: 20px;
 }
 .scroll-container {
-    height: 540px;
+    height: 60vh;
     overflow-y: scroll;
+    margin-bottom: auto;
 
 }
 .cart-empty__inner {

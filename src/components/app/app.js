@@ -16,6 +16,7 @@ import Loader from '../loader/';
 import ScrollToTopBtn from "../scrollToTopBtn/";
 import FixedHead from '../fixedMenu/';
 import Menu from '../menu/';
+import FormPopup from '../FormPopup/';
 
 import historyImg from '../../img/historyimg.png'; 
 import fuller from '../../server/content.json';
@@ -25,17 +26,15 @@ const App = () => {
     const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
     const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
     const [loader, setLoader] = useState(true);
+    const [popup, setPopup ] = useState(true);
     const targetRef = useRef(null);
 
-    const dataList01 = [
-        {title: "Экологически дружелюбных материалов"},
-        {title: "Снижение отходов"},
-        {title: "Вклад в охрану окружающей среды"}
-    ]
-
+    /* закрытие popup окна */
     const handleCloseCart = () => {
         setOpened(!opened);
     };
+
+    /* закрытие popup окна */
     const removeFromCart = (product) => {
         setCart(prevCart => {
             const newCart = prevCart.filter(item => item.descr !== product.descr);
@@ -49,6 +48,8 @@ const App = () => {
             return newCart;
         });
     };
+
+    
     const increaseQuantity = (product) => {
         addToCart(product);
         setQuantity(quantity + 1);
@@ -66,9 +67,11 @@ const App = () => {
             Cookies.set('cart', JSON.stringify(newCart));
             return newCart;
         });
-        setQuantity(quantity - 1);
+        setQuantity(prevQuantity => prevQuantity - 1);
         Cookies.set('quantity', quantity - 1);
     };
+
+    console.log(item)
 
     const addToCart = (product) => {
         setCart(prevCart => {
@@ -122,21 +125,35 @@ const App = () => {
         }
     }, [loader]);
 
+    const handlePopupController = () => {
+        setPopup(!popup);
+        setOpened(!opened);
+
+        popup ? document.querySelector("body").style.overflowY = "hidden" : document.querySelector("body").style.overflowY = ""  ;
+    }
+
+    const handleOrderOfProduct = () => {
+        setPopup(!popup);
+        setOpened(!opened);
+    }
+
     return (
         <React.Fragment>
             {loader ? <Loader/> : null }
+            <FormPopup quantity={quantity} popup={popup} item={item} removeFromCart={removeFromCart} handlePopupController={handlePopupController}/>
             <FixedHead cartToOpen={handleCloseCart} />
             <Header cartToOpen={handleCloseCart}/>
             <About id="about"/>
             <History bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
             <Product/>
             
-            <Catalog ref={targetRef} id="catalog" addToCart={addToCart}/>
+            <Catalog allProducts={fuller.allProducts} id="catalog" addToCart={addToCart}/>
 
-            <History bgColor={"#6EB772"} title={"Чистая вода"} list={dataList01} description={fuller.contentFilter} showButton={false} img={historyImg} />
+            <History bgColor={"#6EB772"} title={"Чистая вода"} list={fuller.cleanWater} description={fuller.contentFilter} showButton={false} img={historyImg} />
             <Form id="contacts"/>
             <Footer/>
             <Cart
+                cartSettings={setOpened}
                 handleCloseCart={handleCloseCart}
                 opened={opened}
                 item={item}
@@ -146,6 +163,7 @@ const App = () => {
                 targetRef={targetRef}
                 closeCart={cartClosed}
                 scrollToTarget={scrollToTarget}
+                handleOrderOfProduct={handleOrderOfProduct}
                 />
             <FixedCart  handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
             {/* <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/> */}
