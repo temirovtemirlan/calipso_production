@@ -1,8 +1,8 @@
 import React from "react";
 
 import './form.scss'    ;
-import ReactPhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
+import ReactPhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 // import ru './f';
 import ru from '../../lang/ru.json';
 

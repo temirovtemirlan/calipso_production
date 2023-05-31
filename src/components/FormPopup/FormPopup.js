@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import './FormPopup.scss';
 
+import ReactPhoneInput from 'react-phone-input-2';
+// import 'react-phone-input-2/lib/style.css';
+// import ru './f';
+import ru from '../../lang/ru.json';
+
 const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity}) => {
 
     const formSendReset = (e) => {
@@ -96,7 +101,7 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
                             </div>))
                 }
                 </div>
-                <div className="d-flex  justify-content-end align-items-center" style={{marginRight: "50px", marginTop: "20px"}}>
+                <div className="d-flex  justify-content-end align-items-center" style={{marginRight: "50px"}}>
                     <h2 className="form__title">
                         Итоговая сумма: {totalPrice} сом
                     </h2>
@@ -106,7 +111,12 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
                     <h2 className="form__title">Закажите артезианскую <br /> воду Calipso прямо сейчас!</h2>
                     <form className="form__popup-form d-flex flex-column" action="">
                         <input className="form__popup-input" type="text" placeholder="Введите ваше имя"/>
-                        <input className="form__popup-input" type="text" placeholder="Номер "/>
+                        <ReactPhoneInput
+                                className="form__num"
+                                country={'kg'}
+                                preferredCountries={['kz','ru','uz']}
+                                localization={ru}
+                                />
                         <input className="form__popup-input" type="text" placeholder="Введите адрес доставки"/>
                         <button
                             className="form__popup-btn accent__btn accent__btn--dark accent--active"

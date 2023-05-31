@@ -71,7 +71,7 @@ $formDarkClr: #2A2B40;
 }
 .form__list, .form__form {
 
-    > :first-child > h2 {
+    > h2 {
         margin-bottom: 32px;
     }
 }
@@ -104,4 +104,28 @@ $formDarkClr: #2A2B40;
     width: 100%;
     column-gap: 30px;
     flex: 1 1;
+
+}
+
+.form__num {
+    > input {
+        width: 100% !important;
+        @extend .form__popup-input ;
+        border: none !important;
+        background-color: #EFEFEF !important;
+        border: none !important;
+        outline: none !important;
+
+        :focus {
+            border: none !important;
+            outline: none !important;
+            
+        }
+    }
+}
+.react-tel-input .selected-flag {
+    padding: 0 0 0 31px !important;
+}
+.react-tel-input .form-control {
+    padding-left: 68px;
 }
