@@ -82,7 +82,7 @@ $formDarkClr: #2A2B40;
 }
 .form__scroll {
     overflow-y: scroll;
-    height: 50vh;
+    height: 35vh;
     margin-bottom: auto;
 
 }
@@ -90,11 +90,6 @@ $formDarkClr: #2A2B40;
     max-width: 700px;
     margin-right: 50px;
 
-    * {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }
 .form__form {
     flex: 1;
@@ -131,4 +126,68 @@ $formDarkClr: #2A2B40;
 }
 .form-control:focus {
     box-shadow: none !important;
+}
+.cart__info  {
+
+    h4  {
+    }
+}
+.cart__descr {  }
+// ! ========================================================================================================================
+@media ( max-width: 1200px ) {
+    .form__block  {
+        column-gap: 50px;
+    }
+}
+@media ( max-width: 999px ) {
+    .form__block  {
+        flex-wrap: wrap-reverse;
+        row-gap: 32px;
+    }
+    .form__list {
+        flex-basis: 100%;
+    }
+    // padding-x padding-y
+    .form__inner {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .form__cart {
+        max-width: none;
+    }
+}
+@media (max-width: 768px) {
+    .form__price-total { margin-right: 20px !important; }
+    .form__price { margin-right: 0; }
+
+    .form__popup {
+        height: 80vh;
+
+    }
+    .form__cart {
+        margin-right: 10px;
+    }
+    .form__inner {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .cart__descr {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden !important;
+        width: 250px;
+    }
+}
+
+@media (max-width: 550px) {
+    .form__subject { font-size: 24px !important; }
+    .form__scroll { display: none; }
+    .form__list > h2, .form__form > h2 { font-size: 18px; margin-bottom: 16px; }
+    .form__inner { row-gap: 20px; }
+    .form__popup-input { padding: 16px ; }  
+    .form__block { row-gap: 20px ; }
+    .form__price { font-size: 20px; }
+
+    .fixed__btn, .scroll-to-top-button { right: 20px; }
 }

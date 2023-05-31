@@ -60,7 +60,14 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
             <div className="form__block d-flex">
                 <div className="form__list d-flex flex-column">
                 <h2 className="form__title">
-                  В заказе {quantity} товаров
+                {quantity <= 1
+                    ? `В заказе ${quantity} товар`
+                    : quantity <= 4
+                    ? `В заказе ${quantity} товара`
+                    : quantity >= 5
+                    ? `В заказе ${quantity} товаров`
+                    : `В заказе ${quantity} товаров`                    
+                    }
                 </h2>
 
                 <div className="form__scroll">
@@ -73,7 +80,7 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
                                 <div className="form__item d-flex align-items-center w-100">
                                         <img className="cart--image" src={item.img} alt="cart" />
                                         <div className="cart__info d-flex flex-column ">
-                                            <h4 className="">{item.descr}</h4>
+                                            <h4 className="cart__descr">{item.descr}</h4>
                                             <div className="d-flex justify-content-between">
                                             <div className="d-flex w-100 flex-column">
                                                 <div className="d-flex  justify-content-between settings__item">
@@ -101,14 +108,14 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
                             </div>))
                 }
                 </div>
-                <div className="d-flex  justify-content-end align-items-center" style={{marginRight: "50px"}}>
-                    <h2 className="form__title">
+                <div className="form__price-total d-flex justify-content-lg-end align-items-center" style={{marginRight: "50px"}}>
+                    <h2 className="form__title form__price">
                         Итоговая сумма: {totalPrice} сом
                     </h2>
                 </div>
                 </div>
                 <div className="form__form">
-                    <h2 className="form__title">Закажите артезианскую <br /> воду Calipso прямо сейчас!</h2>
+                    <h2 className="form__title form__subject">Закажите артезианскую <br /> воду Calipso прямо сейчас!</h2>
                     <form className="form__popup-form d-flex flex-column" action="">
                         <input className="form__popup-input" type="text" placeholder="Введите ваше имя"/>
                         <ReactPhoneInput

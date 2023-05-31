@@ -62,51 +62,52 @@ function Product() {
 
   return (
     <>
-    
-    <main className="overflow-x product-slider product__container">
-        <div className="product__inner">
-            <h2 className="title product__title">Продукция</h2>
+    <main className="main__product">
+    <div className="overflow-x product-slider product__container">
+          <div className="product__inner">
+              <h2 className="title product__title">Продукция</h2>
 
-            <div className="row d-flex justify-content-between w-100">
-                <Swiper
-                    dots="true"
-                    className="col-lg-5"
-                    ref={swiperRef}
-                    loop
-                    autoplay={{ delay: 4000 }}
-                    speed={600}
-                    effect="fade-in"
-                    onSlideChange={handleSlideChange}
-                    onSwiper={(swiper) => console.log("onSwiper")}
-                    pagination={{ clickable: true, el: ".swiper-pagination" }} 
-                >
+              <div className="row d-flex justify-content-between w-100">
+                  <Swiper
+                      dots="true"
+                      className="col-lg-5"
+                      ref={swiperRef}
+                      loop
+                      autoplay={{ delay: 4000 }}
+                      speed={600}
+                      effect="fade-in"
+                      onSlideChange={handleSlideChange}
+                      onSwiper={(swiper) => console.log("onSwiper")}
+                      pagination={{ clickable: true, el: ".swiper-pagination" }} 
+                  >
 
-                  {
-                    imagesBottles.map((img, id) => (
-                      <SwiperSlide key={id}>
-                        <img className="slider__img" src={img} alt="bottles" />
-                      </SwiperSlide>
-                    ))
-                  }
-                </Swiper>
-                <div className="product-details col-lg-5" data-aos="fade-left" data-aos-duration="1500">
-                    <h3 className="product__subject">{title[currentSlide]}</h3>
-                    <span className="product__subtitle">{liter[currentSlide]}</span>
-                    <p className="about__descr">{descriptions[currentSlide]}</p>
-                    <ButtonSwitch mirrorX={true} func={() => swiperRef.current.swiper.slidePrev()}/>
-                    <ButtonSwitch func={() => swiperRef.current.swiper.slideNext()}/>
-                    <div className="bullet-container"><div className="swiper-pagination"></div></div>
-                </div>
-            </div>
+                    {
+                      imagesBottles.map((img, id) => (
+                        <SwiperSlide key={id}>
+                          <img className="slider__img" src={img} alt="bottles" />
+                        </SwiperSlide>
+                      ))
+                    }
+                  </Swiper>
+                  <div className="product-details col-lg-5" data-aos="fade-left" data-aos-duration="1500">
+                      <h3 className="product__subject">{title[currentSlide]}</h3>
+                      <span className="product__subtitle">{liter[currentSlide]}</span>
+                      <p className="about__descr">{descriptions[currentSlide]}</p>
+                      <ButtonSwitch mirrorX={true} func={() => swiperRef.current.swiper.slidePrev()}/>
+                      <ButtonSwitch func={() => swiperRef.current.swiper.slideNext()}/>
+                      <div className="bullet-container"><div className="swiper-pagination"></div></div>
+                  </div>
+              </div>
 
-        </div>
+          </div>
 
 
+      </div>
+      <div className="parallax">
+          <img className="parallax__effects history__parallax--effects parallax-img" src={mountains} alt="mountains" data-speed="10"/>
+          <img className="parallax__effects history__parallax--effects history__parallax--effects-02 parallax-img" src={land} alt="land" data-speed="20"/>
+      </div>
     </main>
-        <div className="parallax">
-            <img className="parallax__effects history__parallax--effects parallax-img" src={mountains} alt="mountains" data-speed="10"/>
-            <img className="parallax__effects history__parallax--effects history__parallax--effects-02 parallax-img" src={land} alt="land" data-speed="20"/>
-        </div>
     </>
   );
 }

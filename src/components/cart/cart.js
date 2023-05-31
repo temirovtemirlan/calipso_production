@@ -37,7 +37,7 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                                 <div className="d-flex w-100 flex-column">
                                                     <div className="d-flex  justify-content-between settings__item">
                                                         <span>Стоимость: </span>
-                                                        <b>{item.price}</b>
+                                                        <b>{item.price} сом</b>
                                                     </div>
 
                                                     <div className="d-flex  justify-content-between settings__item">

@@ -83,6 +83,7 @@
         position: absolute;
         bottom: 0;
         width: 120%;
+        left: 0 !important;
 
         &-02 {
             bottom: 0;  
@@ -118,7 +119,9 @@
 // mySvg fill=""
 
 .slider__img {width: 80%;}
-
+.main__product {
+    overflow: hidden !important;
+}
 @media (max-width: 450px) {
     .slider__img {
         width: 100%;
