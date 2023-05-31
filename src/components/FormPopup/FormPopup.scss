@@ -114,12 +114,12 @@ $formDarkClr: #2A2B40;
         border: none !important;
         background-color: #EFEFEF !important;
         border: none !important;
-        outline: none !important;
+        outline: 1px solid #EFEFEF;
+        $focusClr: #D9D9D9;
 
-        :focus {
-            border: none !important;
-            outline: none !important;
-            
+
+        &:focus {
+            outline: 1px solid $focusClr;
         }
     }
 }
@@ -128,4 +128,7 @@ $formDarkClr: #2A2B40;
 }
 .react-tel-input .form-control {
     padding-left: 68px;
+}
+.form-control:focus {
+    box-shadow: none !important;
 }
