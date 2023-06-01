@@ -16,3 +16,33 @@
 .menu__hide {
     transform: scaleY(0) translateY(-100%) !important ;
 }
+.burgerMenus {
+    position: relative;
+    z-index: 16;
+}
+
+
+// ====
+.burgerMenus {
+    width: 45px ;
+    position: relative;
+
+    background: none;
+    height: 18px;
+    border: none;
+}
+.burgerMenus__liness span {
+    width: 100%;
+    height: 3px;
+    background-color: #c5c5c5;
+    border-radius: 6px;
+
+}
+.burgerMenus__lines { left: 0; position: absolute; }
+.burgerMenus__lines01 { top: 0px; }
+.burgerMenus__lines02 { top: 8px; width: 30px !important; }
+.burgerMenus__lines03 { top: 16px; width: 25px !important; }
+
+.burgerMenus {
+    display: none;
+}

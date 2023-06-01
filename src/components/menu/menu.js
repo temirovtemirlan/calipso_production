@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Logo from '../../img/logo-calipso.svg';
 import './menu.scss';
-import Burger from '../burger/burgerMenu'
 
-const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burger, burgerToggle}) => {
-
-    const handleBurgerOpened = () => {
-        // burgerToggle(!burger)
-    }
-
-
+const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burgerToOpen}) => {
+    let menudRef = useRef();
 
     return (    
-        <div className="menu__inner d-flex justify-content-between w-100" style={{paddingTop: paddingT, paddingBottom: paddingB}}>
+        <div className="menu__inner d-flex justify-content-between w-100 align-items-center" style={{paddingTop: paddingT, paddingBottom: paddingB}}>
             <div className="header__logo"><img src={Logo} alt="calipso"/></div>
             <nav className={`header__menu d-flex align-items-center`}>
                 <a className="header__link link"  href="#">О компании</a>
@@ -30,7 +24,13 @@ const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burger
                 </button>
                 <button className="accent__btn">RU ↓</button>
             </nav>
-            <Burger.Button handleBurgerOpened={handleBurgerOpened}/>
+            <button ref={menudRef} className="burgerMenus menud" onClick={burgerToOpen}>
+                <div className="burgerMenus__liness">
+                    <span className="burgerMenus__lines burgerMenus__lines01"></span>
+                    <span className="burgerMenus__lines burgerMenus__lines02"></span>
+                    <span className="burgerMenus__lines burgerMenus__lines03"></span>
+                </div>
+            </button>
         </div>
     )
 }

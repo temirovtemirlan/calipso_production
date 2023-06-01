@@ -4,7 +4,7 @@ import Menu from '../menu/';
 
 import Logo from '../../img/logo-calipso.svg';
 
-const FixedHead = ({cartToOpen}) => {
+const FixedHead = ({cartToOpen, handleToggleBurger, burger}) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -26,14 +26,14 @@ const FixedHead = ({cartToOpen}) => {
       };
 
     const handleOpenBurgerMenu = () => {
-      
+      console.log(burger)
     }
 
     return (
         <>
             <header className={`fixed__header ${isVisible ? 'fixed__show' : 'fixed__hide'}`}>
                 <div className="fixed__container">
-                  <Menu handleOpenMenu={handleOpenBurgerMenu} cartToOpen={cartToOpen} paddingT='20px' paddingB='20px'/>
+                  <Menu handleOpenMenu={handleOpenBurgerMenu} burgerToOpen={handleToggleBurger} paddingT='20px' paddingB='20px'/>
                 </div>
             </header>
         </>

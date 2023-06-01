@@ -97,51 +97,10 @@
 @media (max-width: 767.98px)  {
     
     .header__menu {
-        display: none;
+        display: none !important;
     }
     .header--number {
         display: none;
-    }
-    .header__lang {
-        display: flex;
-    }
-
-    .header__menu {
-        width: 100%; 
-        height: 100vh;
-
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #fff;
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        row-gap: 16px;
-        flex: 1 0 100%;
-
-        z-index: 11;
-
-        padding: 20px 30px;
-        transition: transform .8s ease 0s;
-
-        $headerSize: 18px ;
-
-        & > a {
-            color: $dark-color;
-            font-size: $headerSize;
-            font-weight: 600;
-        }
-
-        transform: translateX(100%);
-
-    }
-    .header--show {
-        transform: translateX(0%);
-    } 
-    .header--number {
-
     }
 
     .head__address {
@@ -173,10 +132,6 @@
         font-size: 12px;
         color: #A4A4A4;
         line-height: 14.4px;
-    }
-
-    .header__menu {
-        padding-top: 100px;
     }
 
     .header__burger {

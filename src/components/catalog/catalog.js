@@ -7,14 +7,14 @@ import img4 from '../../img/catalog04.png';
 import img5 from '../../img/catalog05.png';
 import './catalog.scss';
 
-const Catalog = ({ addToCart, allProducts }) => {
+const Catalog = ({ addToCart, allProducts,catalogRef }) => {
     const [filter, setFilter] = useState("Все");
     const [load, setLoad] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
         setLoad(false);
-    })
+      }, []);
 
     const images = [img1, img2, img3, img4, img5, img1, img1];
 
@@ -29,7 +29,7 @@ const Catalog = ({ addToCart, allProducts }) => {
 
     return (
         <>
-        <main>
+        <main ref={catalogRef}>
             <div className="product product--bg">
                 <div className="product__inner product__inner-my product__container">
                     <h2 className="product__title title product__title">продукция</h2>

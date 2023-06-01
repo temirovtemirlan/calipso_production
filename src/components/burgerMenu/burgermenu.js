@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import './burgermenu.scss';
 
-const BurgerMenu = ({cartToOpen, opened, menu}) => {
-    const [burgerMenu, setBurgerMenu] = useState(true);
+const BurgerMenu = ({toggled, mobileCloseBurgerMenu, scrollToCatalog}) => {
+    const linkRef = useRef();
 
-    const mobileCloseBurgerMenu = () => {
-        cartToOpen();
-        setBurgerMenu(!burgerMenu)
+    useEffect(() => {
+        
+    }, [])
 
-
-    }
+    
     return (
         <>
-            <div className={`burgerMenu ${burgerMenu ? "burgerMenu--show" : ''}`}> 
+            <div className={`burgerMenu ${toggled ? "burgerMenu--hide" : ''}`}> 
                 <nav className="burgerNav d-flex flex-column align-items-center h-100 w-100 justify-content-center">
-                    <a className="burgerMenu__refs" href="#">Каталог</a>
-                    <a className="burgerMenu__refs" href="#">Контакты</a>
-                    <a className="burgerMenu__refs" href="#">Тарифы</a>
-                    <a className="burgerMenu__refs" href="#">О компании</a>
-                    <a className="burgerMenu__refs" href="#">+996 555 554 344</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="" onClick={scrollToCatalog}>Каталог</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="">Контакты</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="">Тарифы</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="">О компании</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="">+996 555 554 344</a>
 
                     <div className="mobile-menu d-flex ">
                         <button  onClick={mobileCloseBurgerMenu} className="add-to-card">

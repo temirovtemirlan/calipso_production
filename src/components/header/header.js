@@ -1,28 +1,18 @@
 import React, { useState } from "react";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-scroll';
 import Menu from "../menu/";
-import Burger from '../burger/burgerMenu';
-
-import Logo from '../../img/logo-calipso.svg';
-import bg from '../../img/bg.png';
-// ! =====================
+// scss
 import './header.scss';
 
-const Header = ({cartToOpen, burgerToggle}) => {
-
-
-    const [burger, setBurger] = useState(true);
-        
+const Header = ({cartToOpen, burgerToggle, handleOpenBurgerMenu, burgerToOpen}) => {
 
     return (
         <>
         <header className="header header--bg">
             <div className="header__inner">
                 <div className="header__container d-flex justify-content-between w-100 align-items-start">
-                    <div className="adsf d-flex justify-content-between w-100">
-                        <Menu setBurger={setBurger}  burger={burger} cartToOpen={cartToOpen}/>
+                    <div className="d-flex justify-content-between w-100">
+                        <Menu burgerToOpen={burgerToOpen} cartToOpen={cartToOpen}/>
                     </div>
                 </div>
                 <div className="header__slogan header__container header__slogan--mt">
@@ -35,16 +25,4 @@ const Header = ({cartToOpen, burgerToggle}) => {
     )
 }
 
-/*
-
-<button id="burger-menu " className="header__burger">
-                        <div className="menu-icon">
-                            <input className="menu-icon__cheeckbox" type="checkbox" />
-                            <div>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </button>
-*/
 export default Header;

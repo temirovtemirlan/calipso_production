@@ -95,3 +95,18 @@
 .react-tel-input .country-list {
     border-radius: 4px !important;
 }
+
+@media (max-width: 450px) {
+    .contact__block-input {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .react-tel-input .form-control {
+        width: 100% !important;
+        padding: 15px 0 15px 30px;
+    }
+    .contact__btn {
+        width: 100% !important;
+    }
+
+}
