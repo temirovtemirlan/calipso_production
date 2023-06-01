@@ -1,0 +1,47 @@
+.burgerMenu {
+    width: 100%;
+    height: 100vh;
+    z-index: 8;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+
+    transition: all .5s ease-in 0;
+
+    // Чтобы бургер меню не было видно
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.burgerMenu--show {
+    opacity: 1;
+    transform: translateY(0%);
+}
+.burgerMenu__refs {
+    font-size: 24px;
+    text-decoration: none;
+    color: #111111;
+    font-weight: 600;
+}
+.burgerNav {
+    display: flex;
+    // row-gap: ;
+}
+.mobile-menu {
+    column-gap: 24px;
+}
+
+.burgerMenu__refs{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 32px 0;
+
+    transition: background-color .1s ease-in 0s;
+
+    &:hover  {
+        background-color: #f7f7f7ee;
+        display: inline-block;
+    }
+}

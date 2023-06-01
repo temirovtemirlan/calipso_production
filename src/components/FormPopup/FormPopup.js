@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import './FormPopup.scss';
 
 import ReactPhoneInput from 'react-phone-input-2';
@@ -6,7 +6,7 @@ import ReactPhoneInput from 'react-phone-input-2';
 // import ru './f';
 import ru from '../../lang/ru.json';
 
-const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity}) => {
+const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity, popupRef}) => {
 
     const formSendReset = (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         <>
         <div className="form__order">
 
-        <div className={`form__popup ${popup ? "" : "form__show"}`}>
+        <div ref={popupRef} className={`form__popup ${popup ? "" : "form__show"}`}>
             <div className="form__inner d-flex flex-column">
             <div className="w-100"> 
                 <button className="form__btn" onClick={handlePopupController}>
@@ -115,4 +115,5 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         </>
     )
 }
+
 export default FormPopup;

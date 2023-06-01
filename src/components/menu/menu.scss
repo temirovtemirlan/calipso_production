@@ -6,10 +6,13 @@
 
     transition: transform .7s ease 0s;
 }
-
+.header__burger-btn {
+    z-index: 12;
+    position: relative;
+}
 .menu__show {
-    transform: translateY(0);
+    transform: translateY(0) scale(0) !important;
 }
 .menu__hide {
-    transform: translateY(-100%);
+    transform: scaleY(0) translateY(-100%) !important ;
 }

@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-scroll';
 import Menu from "../menu/";
+import Burger from '../burger/burgerMenu';
 
 import Logo from '../../img/logo-calipso.svg';
 import bg from '../../img/bg.png';
 // ! =====================
 import './header.scss';
 
-const Header = ({cartToOpen}) => {
+const Header = ({cartToOpen, burgerToggle}) => {
+
+
+    const [burger, setBurger] = useState(true);
+        
 
     return (
         <>
@@ -17,7 +22,7 @@ const Header = ({cartToOpen}) => {
             <div className="header__inner">
                 <div className="header__container d-flex justify-content-between w-100 align-items-start">
                     <div className="adsf d-flex justify-content-between w-100">
-                        <Menu cartToOpen={cartToOpen}/>
+                        <Menu setBurger={setBurger}  burger={burger} cartToOpen={cartToOpen}/>
                     </div>
                 </div>
                 <div className="header__slogan header__container header__slogan--mt">

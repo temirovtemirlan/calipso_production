@@ -25,11 +25,15 @@ const FixedHead = ({cartToOpen}) => {
         }
       };
 
+    const handleOpenBurgerMenu = () => {
+      
+    }
+
     return (
         <>
             <header className={`fixed__header ${isVisible ? 'fixed__show' : 'fixed__hide'}`}>
                 <div className="fixed__container">
-                  <Menu cartToOpen={cartToOpen} paddingT='20px' paddingB='20px'/>
+                  <Menu handleOpenMenu={handleOpenBurgerMenu} cartToOpen={cartToOpen} paddingT='20px' paddingB='20px'/>
                 </div>
             </header>
         </>

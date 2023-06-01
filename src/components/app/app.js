@@ -15,25 +15,31 @@ import FixedCart from "../fixedCart/";
 import Loader from '../loader/';
 import ScrollToTopBtn from "../scrollToTopBtn/";
 import FixedHead from '../fixedMenu/';
-import Menu from '../menu/';
 import FormPopup from '../FormPopup/';
+import Menu from '../menu/';
 
 import historyImg from '../../img/historyimg.png'; 
 import fuller from '../../server/content.json';
 
+import Burger from '../burger/burgerMenu';
+
 const App = () => {
+    // state & ref, cookies
     const [opened, setOpened] = useState(false);
     const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
     const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
     const [loader, setLoader] = useState(true);
     const [popup, setPopup ] = useState(true);
     const targetRef = useRef(null);
+    const popupRef = useRef(null);
+    const fixedCartRef = useRef(null);
 
     /* закрытие popup окна */
-    const handleCloseCart = () => {
-        setOpened(!opened);
-    };
+    const handleCloseCart = () => { setOpened(!opened); console.log(); }; 
 
+    // * ===========================================
+
+    // * ===========================================
 
 
     /* закрытие popup окна */
@@ -50,14 +56,15 @@ const App = () => {
             return newCart;
         });
     };
-
     
+    // ++ это увелечение кода вообщем этот участок кода отвечает за чтобы увеличивать продукцию на 1++
     const increaseQuantity = (product) => {
         addToCart(product);
         setQuantity(quantity + 1);
         Cookies.set('quantity', quantity + 1);
     };
 
+    // -- это увелечение кода вообщем этот участок кода отвечает за чтобы увеличивать продукцию на 1--
     const decreaseQuantity = (product) => {
         setCart(prevCart => {
             const newCart = prevCart.map(item => {
@@ -73,8 +80,7 @@ const App = () => {
         Cookies.set('quantity', quantity - 1);
     };
 
-    console.log(item)
-
+    // console.log(item)
     const addToCart = (product) => {
         setCart(prevCart => {
             // проверяем, есть ли уже этот товар в корзине
@@ -109,6 +115,11 @@ const App = () => {
         scrollToTarget();
       };
 
+      const handleOrderOfProduct = () => {
+        setPopup(!popup);
+        setOpened(!opened);
+    }
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoader(false);
@@ -134,16 +145,16 @@ const App = () => {
         popup ? document.querySelector("body").style.overflowY = "hidden" : document.querySelector("body").style.overflowY = ""  ;
     }
 
-    const handleOrderOfProduct = () => {
-        setPopup(!popup);
-        setOpened(!opened);
-    }
+    const [ burger, setBurger ] = useState(true)
 
+
+    
     return (
         <React.Fragment>
             {loader ? <Loader/> : null }
-            <FormPopup quantity={quantity} popup={popup} item={item} removeFromCart={removeFromCart} handlePopupController={handlePopupController}/>
-            <FixedHead cartToOpen={handleCloseCart} />
+            <Burger.Menu burger={burger}/>
+            <FormPopup popupRef={popupRef} quantity={quantity} popup={popup} item={item} removeFromCart={removeFromCart} handlePopupController={handlePopupController}/>
+            <FixedHead cartToOpen={handleCloseCart}/>
             <Header cartToOpen={handleCloseCart}/>
             <About id="about"/>
             <History bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
@@ -155,6 +166,7 @@ const App = () => {
             <Form id="contacts"/>
             <Footer/>
             <Cart
+                refs={fixedCartRef}
                 cartSettings={setOpened}
                 handleCloseCart={handleCloseCart}
                 opened={opened}
@@ -167,7 +179,7 @@ const App = () => {
                 scrollToTarget={scrollToTarget}
                 handleOrderOfProduct={handleOrderOfProduct}
                 />
-            <FixedCart  handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
+            <FixedCart handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
             {/* <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/> */}
             {/* <FixedHead/> */}
             <ScrollToTopBtn/>

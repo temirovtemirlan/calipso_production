@@ -178,11 +178,11 @@ $formDarkClr: #2A2B40;
         overflow: hidden !important;
         width: 250px;
     }
+    .form__scroll { display: none; }
 }
 
 @media (max-width: 550px) {
     .form__subject { font-size: 24px !important; }
-    .form__scroll { display: none; }
     .form__list > h2, .form__form > h2 { font-size: 18px; margin-bottom: 16px; }
     .form__inner { row-gap: 20px; }
     .form__popup-input { padding: 16px ; }  

@@ -5,7 +5,6 @@ import cartFirst from '../../img/cart01.png';
 import emptyBottle from '../../img/emptyBottle.svg';
 
 const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, handleOrderOfProduct}) => {
-    const [ order, setOrder ] = useState(true);
 
     return (
         <div className={`cart ${opened ? 'open'  : 'close'} `}>

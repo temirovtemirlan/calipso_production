@@ -121,7 +121,7 @@
         row-gap: 16px;
         flex: 1 0 100%;
 
-        z-index: 100;
+        z-index: 11;
 
         padding: 20px 30px;
         transition: transform .8s ease 0s;
@@ -181,7 +181,6 @@
 
     .header__burger {
         display: block;
-        z-index: 100;
     }
     .burger-fixed {
         position: fixed !important;

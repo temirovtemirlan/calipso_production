@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Logo from '../../img/logo-calipso.svg';
 import './menu.scss';
+import Burger from '../burger/burgerMenu'
 
-const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB}) => {
-    return (
+const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burger, burgerToggle}) => {
+
+    const handleBurgerOpened = () => {
+        // burgerToggle(!burger)
+    }
+
+
+
+    return (    
         <div className="menu__inner d-flex justify-content-between w-100" style={{paddingTop: paddingT, paddingBottom: paddingB}}>
             <div className="header__logo"><img src={Logo} alt="calipso"/></div>
-
-            <nav className="header__menu d-flex align-items-center">
+            <nav className={`header__menu d-flex align-items-center`}>
                 <a className="header__link link"  href="#">О компании</a>
                 <a className="header__link link"  href="#">Каталог</a>
                 <a className="header__link link"  href="#">Контакты</a>
@@ -23,6 +30,7 @@ const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB}) => {
                 </button>
                 <button className="accent__btn">RU ↓</button>
             </nav>
+            <Burger.Button handleBurgerOpened={handleBurgerOpened}/>
         </div>
     )
 }
