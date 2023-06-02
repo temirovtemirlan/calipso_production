@@ -1,10 +1,18 @@
 // catalog.js
 import React, { useState, useEffect } from "react";
-import img1 from '../../img/catalog01.png';
-import img2 from '../../img/catalog02.png';
-import img3 from '../../img/catalog03.png';
-import img4 from '../../img/catalog04.png';
-import img5 from '../../img/catalog05.png';
+import img1 from '../../img/product01.png';
+import img2 from '../../img/product02.png';
+import img3 from '../../img/product03.png';
+import img4 from '../../img/product04.png';
+import img5 from '../../img/product05.png';
+import img6 from '../../img/product06.png';
+import img7 from '../../img/product07.png';
+import img8 from '../../img/product08.png';
+import img9 from '../../img/product09.png';
+import img10 from '../../img/product10.png';
+import img11 from '../../img/product11.png';
+import img12 from '../../img/product12.png';
+import img13 from '../../img/product13.png';
 import './catalog.scss';
 
 const Catalog = ({ addToCart, allProducts,catalogRef }) => {
@@ -16,7 +24,7 @@ const Catalog = ({ addToCart, allProducts,catalogRef }) => {
         setLoad(false);
       }, []);
 
-    const images = [img1, img2, img3, img4, img5, img1, img1];
+    const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13];
 
     let productsWithImages = [...allProducts]; // создаем копию массива allProducts
 
@@ -51,7 +59,7 @@ const Catalog = ({ addToCart, allProducts,catalogRef }) => {
                         </div>
                     </div>
 
-                    <div  data-aos="fade-up" data-aos-duration="1500"  className="row row-gap-3 column-gap-3 product__catalog d-flex justify-content-lg-center justify-content-center  justify-content-md-center w-100">
+                    <div  data-aos="fade-up" data-aos-duration="1500"  className="row row-gap-3 column-gap-3 product__catalog d-flex justify-content-lg-start justify-content-start  justify-content-md-start w-100">
                     {/* { error ? "Ошибка данных, пожалуйста перезагрузите страницу" : load ? "Нет данных" :
                         filteredProducts.map((product, id) => (
                             <СatalogBone key={id} data={product} />
