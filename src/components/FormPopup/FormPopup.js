@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './FormPopup.scss';
 
 import ReactPhoneInput from 'react-phone-input-2';
@@ -7,10 +7,62 @@ import ReactPhoneInput from 'react-phone-input-2';
 import ru from '../../lang/ru.json';
 
 const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity, popupRef}) => {
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
 
-    const formSendReset = (e) => {
-        e.preventDefault();
-    }
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+      };
+    
+      const handlePhoneChange = (phone) => {
+        setPhone(phone);
+      };
+    
+      const handleAddressChange = (event) => {
+        setAddress(event.target.value);
+      };
+    
+
+    // const formSendReset = (e) => {
+    //     e.preventDefault();
+    // }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        const telegramBotToken = "6097734755:AAE4caTHXdk_O6GE8SI2zccqgOp78Ys6oQQ";
+        const chatId = "1866340108";
+    
+        const messageText = `Новый Адрес доставки!\n\nИмя пользователя: ${name}\nТелеофон: ${phone}\nАдрес доставки: ${address}\n\nВ заказе ${quantity}:\n${item.map((item) => (`Название: ${item.descr}\nКоличество: ${item.quantity} блок\nОбъем: ${item.volume}\nЦена: ${item.price} сом\nИтоговая цена: ${totalPrice} сом`))}`;
+    
+        try {
+          const response = await fetch(
+            `https://api.telegram.org/bot${telegramBotToken}/sendMessage`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: messageText,
+              }),
+            }
+          );
+    
+          if (response.ok) {
+            console.log("Сообщение успешно отправлено в Telegram!");
+            setName("");
+            setPhone("");
+            setAddress("");
+          } else {
+            console.error("Ошибка при отправке сообщения в Telegram.");
+          }
+        } catch (error) {
+          console.error("Произошла ошибка:", error);
+        }
+      };
 
     const totalPrice = item.reduce((accumulator, currentValue) => {
         return (currentValue.price * currentValue.quantity) + accumulator
@@ -33,14 +85,7 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
             <div className="form__block d-flex">
                 <div className="form__list d-flex flex-column">
                 <h2 className="form__title">
-                {quantity <= 1
-                    ? `В заказе ${quantity} товар`
-                    : quantity <= 4
-                    ? `В заказе ${quantity} товара`
-                    : quantity >= 5
-                    ? `В заказе ${quantity} товаров`
-                    : `В заказе ${quantity} товаров`                    
-                    }
+                  В заказе {quantity} товаров
                 </h2>
 
                 <div className="form__scroll">
@@ -89,18 +134,32 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
                 </div>
                 <div className="form__form">
                     <h2 className="form__title form__subject">Закажите артезианскую <br /> воду Calipso прямо сейчас!</h2>
-                    <form className="form__popup-form d-flex flex-column" action="">
-                        <input className="form__popup-input" type="text" placeholder="Введите ваше имя"/>
+                    <form onSubmit={handleSubmit} className="form__popup-form d-flex flex-column" action="POST">
+                        <input
+                            className="form__popup-input"
+                            type="text"
+                            placeholder="Введите ваше имя"
+                            onChange={handleNameChange}
+                            value={name}
+                            />
                         <ReactPhoneInput
                                 className="form__num"
                                 country={'kg'}
                                 preferredCountries={['kz','ru','uz']}
                                 localization={ru}
+                                value={phone}
+                                onChange={handlePhoneChange}
                                 />
-                        <input className="form__popup-input" type="text" placeholder="Введите адрес доставки"/>
+                        <input
+                            className="form__popup-input"
+                            type="text"
+                            placeholder="Введите адрес доставки"
+                            onChange={handleAddressChange}
+                            value={address}
+                            />
                         <button
+                            type="submit"
                             className="form__popup-btn accent__btn accent__btn--dark accent--active"
-                            onClick={formSendReset}
                         >
                         Отправить
                         </button>
