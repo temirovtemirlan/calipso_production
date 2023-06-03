@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Logo from '../../img/logo-calipso.svg';
 import './menu.scss';
 
@@ -9,9 +9,9 @@ const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burger
         <div className="menu__inner d-flex justify-content-between w-100 align-items-center" style={{paddingTop: paddingT, paddingBottom: paddingB}}>
             <div className="header__logo"><img src={Logo} alt="calipso"/></div>
             <nav className={`header__menu d-flex align-items-center`}>
-                <a className="header__link link"  href="#">О компании</a>
-                <a className="header__link link"  href="#">Каталог</a>
-                <a className="header__link link"  href="#">Контакты</a>
+                <a className="header__link link">О компании</a>
+                <a className="header__link link">Каталог</a>
+                <a className="header__link link">Контакты</a>
                 <a className="header__link link header--number" href="tel:+996501222299">+996 501 222 299</a>
 
                 <button  onClick={cartToOpen} className="add-to-card">

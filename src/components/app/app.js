@@ -25,7 +25,7 @@
 
     const App = () => {
         // state & ref, cookies
-        const [showCookieNotification, setShowCookieNotification] = useState(false);
+        const [showCookieNotification, setShowCookieNotification] = useState(true);
         const [opened, setOpened] = useState(false);
         const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
         const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
@@ -40,12 +40,6 @@
         const handleCloseCart = () => {
             setOpened(!opened);
         }; 
-
-        // * ===========================================
-
-        // * ===========================================
-
-
         /* закрытие popup окна */
         const removeFromCart = (product) => {
             setCart(prevCart => {
