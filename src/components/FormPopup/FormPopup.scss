@@ -129,11 +129,13 @@ $formDarkClr: #2A2B40;
     box-shadow: none !important;
 }
 .cart__info  {
+    width: 100%;
 
     h4  {
     }
 }
 .cart__descr {  }
+
 // ! ========================================================================================================================
 @media ( max-width: 1200px ) {
     .form__block  {
@@ -157,6 +159,7 @@ $formDarkClr: #2A2B40;
     .form__cart {
         max-width: none;
     }
+    .form__scroll { display: none; }
 }
 @media (max-width: 768px) {
     .form__price-total { margin-right: 20px !important; }
@@ -179,7 +182,6 @@ $formDarkClr: #2A2B40;
         overflow: hidden !important;
         width: 250px;
     }
-    .form__scroll { display: none; }
 }
 
 @media (max-width: 550px) {

@@ -17,6 +17,7 @@
     import FixedHead from '../fixedMenu/';
     import FormPopup from '../FormPopup/';
     import BurgerMenu from "../burgerMenu/burgermenu";
+    import CookieNotification from '../сookieNotification/сookieNotification';
 
     import historyImg from '../../img/historyimg.png'; 
     import fuller from '../../server/content.json';
@@ -24,6 +25,7 @@
 
     const App = () => {
         // state & ref, cookies
+        const [showCookieNotification, setShowCookieNotification] = useState(false);
         const [opened, setOpened] = useState(false);
         const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
         const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
@@ -123,6 +125,19 @@
         }
 
         useEffect(() => {
+            const hasGivenConsent = Cookies.get("cookieConsent");
+            if (hasGivenConsent) {
+              setShowCookieNotification(false);
+            }
+        }, []);
+        
+        // Обработчик согласия с использованием файлов cookie
+        const handleAccept = () => {
+            Cookies.set("cookieConsent", true, { expires: 30 }); // Устанавливаем куки на 30 дней
+            setShowCookieNotification(false);
+        };
+
+        useEffect(() => {
             const timer = setTimeout(() => {
                 setLoader(false);
             }, 3000     );
@@ -190,6 +205,7 @@
                 {/* <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/> */}
                 {/* <FixedHead/> */}
                 <ScrollToTopBtn/>
+                {showCookieNotification && <CookieNotification acceptCookies={handleAccept} />}
                 <BurgerMenu scrollToCatalog={scrollToCatalogs}  mobileCloseBurgerMenu={handleCloseCart} toggled={burger}/>
             </React.Fragment>
         )

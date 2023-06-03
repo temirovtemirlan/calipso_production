@@ -2,14 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import './FormPopup.scss';
 
 import ReactPhoneInput from 'react-phone-input-2';
-// import 'react-phone-input-2/lib/style.css';
-// import ru './f';
 import ru from '../../lang/ru.json';
+import successImg from '../../img/success.svg';
+import emptyImg from '../../img/info.svg';
+import errorImg from '../../img/error.svg';
+
 
 const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity, popupRef}) => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+
+    // Message
+    const [successMessage, setSuccessMessage] = useState(false);
+    const [emptyMessage, setEmptyMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -30,6 +37,12 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (name === "" || phone === "" || address === "") {
+          // return ; // Если хотя бы одно поле не заполнено, просто выйти из функции handleSubmit
+          return setEmptyMessage(!emptyMessage);
+          
+        }
     
         const telegramBotToken = "6097734755:AAE4caTHXdk_O6GE8SI2zccqgOp78Ys6oQQ";
         const chatId = "1866340108";
@@ -56,8 +69,11 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
             setName("");
             setPhone("");
             setAddress("");
+            setSuccessMessage(!successMessage);
           } else {
             console.error("Ошибка при отправке сообщения в Telegram.");
+          setErrorMessage(!errorMessage)
+
           }
         } catch (error) {
           console.error("Произошла ошибка:", error);
@@ -68,6 +84,24 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         return (currentValue.price * currentValue.quantity) + accumulator
     }, 0)
 
+    useEffect(() => {
+      const timer1 = setTimeout(() => {
+        setSuccessMessage(false);
+      }, 3000);
+      const timer2 = setTimeout(() => {
+        setEmptyMessage(false);
+      }, 2000);
+      const timer3 = setTimeout(() => {
+        setErrorMessage(false)
+      }, 5000);
+    
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      }
+    });
+    
     return (
         <>
         <div className="form__order">
@@ -85,7 +119,7 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
             <div className="form__block d-flex">
                 <div className="form__list d-flex flex-column">
                 <h2 className="form__title">
-                  В заказе {quantity} товаров
+                В заказе {quantity} товаров
                 </h2>
 
                 <div className="form__scroll">
@@ -171,8 +205,32 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         </div>
         </div>
 
+        <Message messageState={successMessage} img={successImg} title={"Заказ получен!"} descr={"Мы свяжемся с вами в ближайшее время для подтверждения и организации доставки."}/>
+
+        <Message messageState={emptyMessage} img={emptyImg} title={"Пожалуйста заполните форму!"} descr={"Просим вас внимательно заполнить все поля, чтобы мы могли связаться с вами и организовать доставку"}/>
+
+        <Message messageState={errorMessage} img={errorImg} title={"Не удалось отправить заказ!"} descr={<>К сожалению, возникла проблема при отправке вашего заказа. Мы приносим извинения за неудобства. Пожалуйста, попробуйте еще раз позже или свяжитесь с нашей службой поддержки по номеру <a href="tel:+996501222299">+996 501 222 299</a> или по электронной почте <a href="mailto:support@example.com">support@example.com</a>. Мы постараемся помочь вам решить эту проблему. Благодарим за ваше терпение и понимание.</>}/>
+
         </>
     )
+}
+
+const Message = ({messageState = false, img, title, descr}) => {
+  return (
+    <>
+<div className={`message__block ${messageState ? "message__show" : ""}`}>
+            <div className="message__title d-flex align-items-center">
+              <img src={img} alt="svg icon" />
+              <h4>{title}</h4>
+            </div>
+
+            <p className="message__text">
+              {descr}
+            </p>
+          </div>
+
+    </>
+  )
 }
 
 export default FormPopup;

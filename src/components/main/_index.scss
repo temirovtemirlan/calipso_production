@@ -295,3 +295,56 @@ $primary-blue: #36A9E1;
 		}
 	}
 }
+
+
+// Form message 
+.message__block {
+    width: 100%;
+    max-width: 450px;
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    z-index: 100;
+    background-color: #FCFCFC;
+    box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px ;
+
+    padding: 16px 20px;
+    transform: translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .6s ease 0s;
+
+
+}
+.message__show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+.message__title {
+    column-gap: 12px;
+
+    h4 {
+        font-size: 18px;
+        font-weight: 700 !important;
+        margin: 0;
+    }
+}
+.message__text {
+    font-size: 16px;
+    margin: 0;
+}
+
+@media (max-width: 500px) {
+    .message__block {
+        bottom: 0;
+        left: 0;
+
+    }
+}
