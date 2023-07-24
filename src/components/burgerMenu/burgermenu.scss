@@ -39,3 +39,10 @@
         background-color: #f6f6f6;
     }
 }
+
+@media (orientation: portrait)  {
+    .form__inner {
+        overflow-y: scroll;
+        height: -webkit-fill-available;
+    }
+}

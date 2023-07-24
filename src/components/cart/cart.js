@@ -1,13 +1,31 @@
 // cart.js
-import React, { useState, useEffect, useRef } from "react";
+import React, {useRef, useEffect} from "react";
 import './cart.scss';
-import cartFirst from '../../img/cart01.png';
 import emptyBottle from '../../img/emptyBottle.svg';
 
-const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, handleOrderOfProduct}) => {
+const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, handleOrderOfProduct, cartSettings}) => {
+
+    const popupRef = useRef();
+
+    // const useClickOutSide
+    
+    const handleOutsideClick = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        cartSettings(false);
+         // Закрыть блок
+      }
+    };
+  
+    useEffect(() => {
+        document.addEventListener("mousedown", handleOutsideClick);
+  
+      return () => {
+        document.removeEventListener("mousedown", handleOutsideClick);
+      };
+    }, []);
 
     return (
-        <div className={`cart ${opened ? 'open'  : 'close'} `}>
+        <div ref={popupRef} className={`cart ${opened ? 'open'  : 'close'} `}>
 
                 <button onClick={handleCloseCart} className="cart--close">
                 <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -19,7 +19,6 @@ const Form = () => {
       const [emptyMessage, setEmptyMessage] = useState(false);
       const [errorMessage, setErrorMessage] = useState(false);
   
-//   const [photos, setPhoto] = useState("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.netsolutions.com%2Finsights%2F10-ux-design-trends-to-look-for-next-year%2F&psig=AOvVaw156WfMM2u5WCbeZqJLflHR&ust=1685748231874000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDNmtabo_8CFQAAAAAdAAAAABAI") 
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -96,7 +95,7 @@ const Form = () => {
 
   return (
     <>
-      <section>
+      <section  id="contacts">
         <div className="contact contact--bg">
           <div className="contact__container contact__inner contact--px contact--py">
             <h2 className="contact__title title">связаться с нами</h2>
@@ -126,6 +125,7 @@ const Form = () => {
                       localization={ru}
                       value={phone}
                       onChange={handlePhoneChange}
+                      placeholder="555 555 555"
                     />
                     <input
                       onChange={handleEmailChange}
@@ -143,12 +143,14 @@ const Form = () => {
         </div>
       </section>
 
-      <Message messageState={successMessage} img={successImg} title={"Спасибо за ваше сообщение!"} descr={"Мы получили ваши контактные данные и скоро свяжемся с вами."}/>
-
-      <Message messageState={emptyMessage} img={emptyImg} title={"Пожалуйста, заполните все поля!"} descr={"Для того, чтобы наш колл-центр мог связаться с вами, пожалуйста, заполните все обязательные поля формы."}/>
-
-      <Message messageState={errorMessage} img={errorImg} title={"Ошибка при отправке"} descr={"К сожалению, произошла ошибка при отправке вашего сообщения. Пожалуйста, повторите попытку позже или свяжитесь с нашей службой поддержки."}/>
-
+       { successMessage ? (
+         <Message messageState={successMessage} img={successImg} title={"Спасибо за ваше сообщение!"} descr={"Мы получили ваши контактные данные и скоро свяжемся с вами."}/>
+       ) : emptyMessage ? (
+        <Message messageState={emptyMessage} img={emptyImg} title={"Пожалуйста, заполните все поля!"} descr={"Для того, чтобы наш колл-центр мог связаться с вами, пожалуйста, заполните все обязательные поля формы."}/>
+       ) : errorMessage ? (
+         <Message messageState={errorMessage} img={errorImg} title={"Ошибка при отправке"} descr={"К сожалению, произошла ошибка при отправке вашего сообщения. Пожалуйста, повторите попытку позже или свяжитесь с нашей службой поддержки."}/>
+       ) : null
+       }
     </>
   );
 }

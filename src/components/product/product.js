@@ -69,20 +69,20 @@ function Product() {
 
               <div className="row d-flex justify-content-between w-100">
                   <Swiper
+                      EffectFade
                       dots="true"
                       className="col-lg-5"
                       ref={swiperRef}
-                      loop
+                      loop={true}
                       autoplay={{ delay: 4000 }}
                       speed={600}
                       effect="fade-in"
                       onSlideChange={handleSlideChange}
-                      onSwiper={(swiper) => console.log("onSwiper")}
                       pagination={{ clickable: true, el: ".swiper-pagination" }} 
                   >
 
                     {
-                      imagesBottles.map((img, id) => (
+                      imagesBottles?.map((img, id) => (
                         <SwiperSlide key={id}>
                           <img className="slider__img" src={img} alt="bottles" />
                         </SwiperSlide>
@@ -111,7 +111,5 @@ function Product() {
     </>
   );
 }
-
-// onClick={() => swiperRef.current.swiper.slideNext()}
 
 export default Product;

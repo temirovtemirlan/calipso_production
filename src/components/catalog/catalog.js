@@ -37,10 +37,10 @@ const Catalog = ({ addToCart, allProducts,catalogRef }) => {
 
     return (
         <>
-        <main ref={catalogRef}>
+        <main id="catalog" ref={catalogRef}>
             <div className="product product--bg">
                 <div className="product__inner product__inner-my product__container">
-                    <h2 className="product__title title product__title">продукция</h2>
+                    <h2 className="product__title title product__title">Каталог</h2>
 
                     <div className="filter d-flex w-100 filter__block row">
 
@@ -59,13 +59,7 @@ const Catalog = ({ addToCart, allProducts,catalogRef }) => {
                         </div>
                     </div>
 
-                    <div  data-aos="fade-up" data-aos-duration="1500"  className="row row-gap-3 column-gap-3 product__catalog d-flex justify-content-lg-start justify-content-start  justify-content-md-start w-100">
-                    {/* { error ? "Ошибка данных, пожалуйста перезагрузите страницу" : load ? "Нет данных" :
-                        filteredProducts.map((product, id) => (
-                            <СatalogBone key={id} data={product} />
-                        ))
-                    } */}
-
+                    <div  data-aos="fade-up" data-aos-duration="1500"  className="row row-gap-3 column-gap-3 product__catalog d-flex justify-content-lg-start justify-content-xl-center justify-content-center justify-content-sm-center justify-content-md-center  w-100">
                     {
                         filteredProducts.map((product, id) => (
                             <СatalogBone key={id} data={product} img={product.img} addToCart={() => addToCart(product)}/>
@@ -87,7 +81,7 @@ const СatalogBone = ({data, addToCart}) => {
     return (
         <>
         <div className="col-lg-3 col-md-6 col-sm-12 product__item d-flex flex-column product__catalog_items">
-            <img src={img} alt="catalog01"/>
+            <img className="catalog__img" src={img} alt="catalog01"/>
             <div className="d-flex justify-content-between flex-column w-100 catalog__item">
 
                 <div className="catalog__pc">

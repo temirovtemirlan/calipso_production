@@ -17,10 +17,13 @@
     import FixedHead from '../fixedMenu/';
     import FormPopup from '../FormPopup/';
     import BurgerMenu from "../burgerMenu/burgermenu";
+    import Wrapper from '../wrapper/';
+    // Other blocks
     import CookieNotification from '../сookieNotification/сookieNotification';
 
     import historyImg from '../../img/historyimg.png'; 
     import fuller from '../../server/content.json';
+
 
 
     const App = () => {
@@ -30,15 +33,15 @@
         const [item, setCart] = useState(Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : []);
         const [quantity, setQuantity] = useState(Cookies.get('quantity') ? JSON.parse(Cookies.get('quantity')) : 0);
         const [loader, setLoader] = useState(true);
-        const [popup, setPopup ] = useState(true);
+        const [popup, setPopup ] = useState(false);
         const targetRef = useRef(null);
-        const popupRef = useRef(null);
         const fixedCartRef = useRef(null);
         const catalogRef = useRef(null);
 
         /* закрытие popup окна */
         const handleCloseCart = () => {
             setOpened(!opened);
+            // console.log('что-то открытолось setOpened(!opened)')
         }; 
         /* закрытие popup окна */
         const removeFromCart = (product) => {
@@ -53,8 +56,24 @@
                 
                 return newCart;
             });
+            console.log('Была использована функция RemoveFromCart')
         };
-        
+
+        // clear cart
+        const clearCart = () => {
+            // Очищаем корзину
+            setCart([]);
+            // Очищаем количество товаров
+            setQuantity(0);
+            // Устанавливаем пустую корзину в куки
+            Cookies.remove('cart');
+            // Устанавливаем ноль в куки для количества товаров
+            Cookies.remove('quantity');
+            // Устанавливаем состояние opened в false
+            setOpened(false);
+            setPopup(false);
+        };
+
         // ++ это увелечение кода вообщем этот участок кода отвечает за чтобы увеличивать продукцию на 1++
         const increaseQuantity = (product) => {
             addToCart(product);
@@ -76,6 +95,7 @@
             });
             setQuantity(prevQuantity => prevQuantity - 1);
             Cookies.set('quantity', quantity - 1);
+
         };
 
         // console.log(item)
@@ -116,6 +136,7 @@
         const handleOrderOfProduct = () => {
             setPopup(!popup);
             setOpened(!opened);
+            console.log('Был открыт что-то')
         }
 
         useEffect(() => {
@@ -127,6 +148,7 @@
         
         // Обработчик согласия с использованием файлов cookie
         const handleAccept = () => {
+            
             Cookies.set("cookieConsent", true, { expires: 30 }); // Устанавливаем куки на 30 дней
             setShowCookieNotification(false);
         };
@@ -134,7 +156,7 @@
         useEffect(() => {
             const timer = setTimeout(() => {
                 setLoader(false);
-            }, 3000     );
+            }, 3000);
 
 
 
@@ -153,7 +175,6 @@
             setPopup(!popup);
             setOpened(!opened);
 
-            popup ? document.querySelector("body").style.overflowY = "hidden" : document.querySelector("body").style.overflowY = ""  ;
         }
 
         const [ burger, setBurger ] = useState(true);
@@ -161,25 +182,23 @@
         const handleToggleBurger = () => {
             setBurger(!burger);
         }
-
-        const scrollToCatalogs = () => {
-            catalogRef.current.scrollIntoView({ behavior: 'smooth' });
-        };
         
         return (
-            <React.Fragment>
+            <>
+            <Wrapper loader={loader}>
+
                 {loader ? <Loader/> : null }
-                <FormPopup popupRef={popupRef} quantity={quantity} popup={popup} item={item} removeFromCart={removeFromCart} handlePopupController={handlePopupController}/>
+                <FormPopup setPopup={setPopup} popup={popup} clearCart={clearCart} quantity={quantity} item={item} removeFromCart={removeFromCart} handlePopupController={handlePopupController}/>
                 <FixedHead burger={burger} handleToggleBurger={handleToggleBurger} cartToOpen={handleCloseCart}/>
                 <Header cartToOpen={handleCloseCart} burgerToOpen={handleToggleBurger}/>
-                <About id="about"/>
-                <History bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
+                <About/>
+                <History setId={"aboutcompany"} bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
                 <Product/>
                 
                 <Catalog catalogRef={catalogRef} allProducts={fuller.allProducts} id="catalog" addToCart={addToCart}/>
 
                 <History bgColor={"#6EB772"} title={"Чистая вода"} list={fuller.cleanWater} description={fuller.contentFilter} showButton={false} img={historyImg} />
-                <Form id="contacts"/>
+                <Form/>
                 <Footer/>
                 <Cart
                     refs={fixedCartRef}
@@ -196,12 +215,11 @@
                     handleOrderOfProduct={handleOrderOfProduct}
                     />
                 <FixedCart handleCloseCart={handleCloseCart} opened={opened} quantity={quantity} addToCart={addToCart}/>
-                {/* <Menu bgMenu={false} fixedMenu={true} cartToOpen={handleCloseCart}/> */}
-                {/* <FixedHead/> */}
                 <ScrollToTopBtn/>
                 {showCookieNotification && <CookieNotification acceptCookies={handleAccept} />}
-                <BurgerMenu scrollToCatalog={scrollToCatalogs}  mobileCloseBurgerMenu={handleCloseCart} toggled={burger}/>
-            </React.Fragment>
+                <BurgerMenu handleToggleBurger={handleToggleBurger}  mobileCloseBurgerMenu={handleCloseCart} toggled={burger}/>
+            </Wrapper>
+            </>
         )
     }
 

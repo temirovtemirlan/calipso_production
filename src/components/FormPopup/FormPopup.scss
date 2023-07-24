@@ -12,7 +12,7 @@ $formDarkClr: #2A2B40;
     position: fixed;
     bottom: 0;
     z-index: 11;
-    transform: translateY(100%);
+    transform: translateY(0%);
     border-radius: 30px 30px 0 0 ;
     transition: all .8s ease 0s;
     
@@ -30,9 +30,6 @@ $formDarkClr: #2A2B40;
     font-size: 25px;
     font-weight: 700;
     color: $formDarkClr;
-}
-.form__popup {
-
 }
 .form__btn {
     @include defaultBtn;
@@ -67,8 +64,8 @@ $formDarkClr: #2A2B40;
     column-gap: 100px;
 }
 
-.form__show {
-    transform: translateY(0);
+.form__hide {
+    transform: translateY(100%);
 }
 .form__list, .form__form {
 
@@ -136,6 +133,15 @@ $formDarkClr: #2A2B40;
 }
 .cart__descr {  }
 
+
+.form__popup-test {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: red;
+}
 // ! ========================================================================================================================
 @media ( max-width: 1200px ) {
     .form__block  {

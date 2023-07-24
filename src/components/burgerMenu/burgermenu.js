@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import './burgermenu.scss';
 
-const BurgerMenu = ({toggled, mobileCloseBurgerMenu, scrollToCatalog}) => {
+const BurgerMenu = ({toggled, mobileCloseBurgerMenu, handleToggleBurger}) => {
     const linkRef = useRef();
 
     useEffect(() => {
@@ -13,11 +13,10 @@ const BurgerMenu = ({toggled, mobileCloseBurgerMenu, scrollToCatalog}) => {
         <>
             <div className={`burgerMenu ${toggled ? "burgerMenu--hide" : ''}`}> 
                 <nav className="burgerNav d-flex flex-column align-items-center h-100 w-100 justify-content-center">
-                    <a ref={linkRef} className="burgerMenu__refs" href="" onClick={scrollToCatalog}>Каталог</a>
-                    <a ref={linkRef} className="burgerMenu__refs" href="">Контакты</a>
-                    <a ref={linkRef} className="burgerMenu__refs" href="">Тарифы</a>
-                    <a ref={linkRef} className="burgerMenu__refs" href="">О компании</a>
-                    <a ref={linkRef} className="burgerMenu__refs" href="">+996 555 554 344</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="#aboutcompany" onClick={handleToggleBurger}>О компании</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="#catalog" onClick={handleToggleBurger}>Каталог</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="#contacts" onClick={handleToggleBurger}>Контакты</a>
+                    <a ref={linkRef} className="burgerMenu__refs" href="tel:+996501222299">+996 501 222 299</a>
 
                     <div className="mobile-menu d-flex ">
                         <button  onClick={mobileCloseBurgerMenu} className="add-to-card">
@@ -30,8 +29,6 @@ const BurgerMenu = ({toggled, mobileCloseBurgerMenu, scrollToCatalog}) => {
                         </button>
                         <button className="accent__btn accent__btn--dark">RU ↓</button>
                     </div>
-
-
                 </nav>
             </div>
         </>

@@ -2,10 +2,11 @@
 import React from "react";
 import './history.scss';
 
-const History = ({bgColor,title,description,showButton, img, list }) => {
+const History = ({bgColor,title,description,showButton, img, list, setId }) => {
     return (
         <>
-        <section>
+        {/* aboutcompany */}
+        <section id={setId}>
             <div className="history" style={{backgroundColor: bgColor}}>
                 <div className="history__inner history__inner--py history__container">
                     <h2 className="history__title title history__title">{title}</h2>
@@ -21,7 +22,7 @@ const History = ({bgColor,title,description,showButton, img, list }) => {
                                 {description}
                             </p>
 
-                            {showButton ? <button className="accent__btn accent__btn--lg">Купить сейчас</button> : null}
+                            {showButton ? <a className="accent__btn accent__btn--lg link__btn" href="#catalog">Купить сейчас</a> : null}
                         </div>
 
                         <div data-aos="fade-left" data-aos-duration="1400" className="col-lg-6 col-md-12 history__img"><img className="w-100" src={img} alt="image"/></div>

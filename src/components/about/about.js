@@ -37,7 +37,7 @@ const About = () => {
 ];
 
     return (
-        <section>
+        <section id="water">
             <div className="about">
                 <div className="about__inner about__container">
                     <h2 className="about__title title about__title--my">о воде</h2>

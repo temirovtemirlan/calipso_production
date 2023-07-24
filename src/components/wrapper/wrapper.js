@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import scrollTrigger from '../../libs/gsap/gsap.min.js';
+import React from "react";
 
-const Wrapper = (WrappedComponent) => {
-    return class extends Component (
-        <div className="example-wrapper">
-            <WrappedComponent {...this.props} />
+const Wrapper = ({ loader, children}) => {
+
+    return (
+        <div style={{marginRight: "calc(-1 * (100vw - 100%)"}} className="bodyContainer">
+        {children}
         </div>
-    )
-}
+    );
+};
+
+export default Wrapper;

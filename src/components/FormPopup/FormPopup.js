@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer, useRef } from "react";
 import './FormPopup.scss';
 
 import ReactPhoneInput from 'react-phone-input-2';
@@ -6,9 +6,10 @@ import ru from '../../lang/ru.json';
 import successImg from '../../img/success.svg';
 import emptyImg from '../../img/info.svg';
 import errorImg from '../../img/error.svg';
+import { CSSTransition } from "react-transition-group";
 
 
-const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity, popupRef}) => {
+const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setPopup}) => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
@@ -17,6 +18,26 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
     const [successMessage, setSuccessMessage] = useState(false);
     const [emptyMessage, setEmptyMessage] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
+
+    // popupRef
+    const popupRef = useRef();
+    
+    const handleOutsideClick = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setPopup(false);
+        
+         // Закрыть блок
+      }
+    };
+  
+    useEffect(() => {
+        document.addEventListener("mousedown", handleOutsideClick);
+  
+      return () => {
+        document.removeEventListener("mousedown", handleOutsideClick);
+      };
+    }, []);
+
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -41,7 +62,6 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         if (name === "" || phone === "" || address === "") {
           // return ; // Если хотя бы одно поле не заполнено, просто выйти из функции handleSubmit
           return setEmptyMessage(!emptyMessage);
-          
         }
     
         const telegramBotToken = "6097734755:AAE4caTHXdk_O6GE8SI2zccqgOp78Ys6oQQ";
@@ -66,10 +86,12 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
     
           if (response.ok) {
             console.log("Сообщение успешно отправлено в Telegram!");
-            setName("");
-            setPhone("");
-            setAddress("");
-            setSuccessMessage(!successMessage);
+
+              setName("");
+              setPhone("");
+              setAddress("");
+              setSuccessMessage(!successMessage);
+              clearCart();
           } else {
             console.error("Ошибка при отправке сообщения в Telegram.");
           setErrorMessage(!errorMessage)
@@ -85,8 +107,36 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
     }, 0)
 
     useEffect(() => {
-      const timer1 = setTimeout(() => {
+
+      if (emptyMessage) {
+        const timer1 = setTimeout(() => {
+          setEmptyMessage(false);
+          console.log("the notification inmount");
+        }, 3000);
+
+        return () => {
+          clearTimeout(timer1);
+          console.log("the notification is deleted");
+        }
+      }
+
+      if (errorMessage) {
+        const timer3 = setTimeout(() => {
+          setErrorMessage(false);
+          console.log("the notification inmount");
+        }, 3000);
+        
+        return () => {
+          clearTimeout(timer3);
+          console.log("the notification is deleted"); 
+        }
+      }
+
+    }, [successMessage, emptyMessage, errorMessage]);
+    /*
+          const timer1 = setTimeout(() => {
         setSuccessMessage(false);
+        console.log('setSuccessMessage(false) 1');
       }, 3000);
       const timer2 = setTimeout(() => {
         setEmptyMessage(false);
@@ -97,16 +147,16 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
     
       return () => {
         clearTimeout(timer1);
+        console.log('setSuccessMessage(false) 2');
         clearTimeout(timer2);
         clearTimeout(timer3);
       }
-    });
-    
+    */
     return (
         <>
         <div className="form__order">
 
-        <div ref={popupRef} className={`form__popup ${popup ? "" : "form__show"}`}>
+        <div ref={popupRef} className={`form__popup ${popup ? "form__show" : "form__hide"}`}>
             <div className="form__inner d-flex flex-column">
             <div className="w-100"> 
                 <button className="form__btn" onClick={handlePopupController}>
@@ -183,6 +233,7 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
                                 localization={ru}
                                 value={phone}
                                 onChange={handlePhoneChange}
+                                
                                 />
                         <input
                             className="form__popup-input"
@@ -205,15 +256,48 @@ const FormPopup = ({item, removeFromCart, handlePopupController, popup, quantity
         </div>
         </div>
 
-        <Message messageState={successMessage} img={successImg} title={"Заказ получен!"} descr={"Мы свяжемся с вами в ближайшее время для подтверждения и организации доставки."}/>
-
-        <Message messageState={emptyMessage} img={emptyImg} title={"Пожалуйста заполните форму!"} descr={"Просим вас внимательно заполнить все поля, чтобы мы могли связаться с вами и организовать доставку"}/>
-
-        <Message messageState={errorMessage} img={errorImg} title={"Не удалось отправить заказ!"} descr={<>К сожалению, возникла проблема при отправке вашего заказа. Мы приносим извинения за неудобства. Пожалуйста, попробуйте еще раз позже или свяжитесь с нашей службой поддержки по номеру <a href="tel:+996501222299">+996 501 222 299</a> или по электронной почте <a href="mailto:support@example.com">support@example.com</a>. Мы постараемся помочь вам решить эту проблему. Благодарим за ваше терпение и понимание.</>}/>
+        <CSSTransition in={emptyMessage} timeout={300} unmountOnExit>
+          <div className="form__popup-test">this is test</div>
+        </CSSTransition>
+        {/* {
+  successMessage ? (
+    <Message
+      messageState={successMessage}
+      img={successImg}
+      title={"Заказ получен!"}
+      descr={
+        "Мы свяжемся с вами в ближайшее время для подтверждения и организации доставки."
+      }
+    />
+  ) : emptyMessage ? (
+    <Message
+      messageState={emptyMessage}
+      img={emptyImg}
+      title={"Пожалуйста заполните форму!"}
+      descr={
+        "Просим вас внимательно заполнить все поля, чтобы мы могли связаться с вами и организовать доставку"
+      }
+    />
+  ) : errorMessage ? (
+    <Message
+      messageState={errorMessage}
+      img={errorImg}
+      title={"Не удалось отправить заказ!"}
+      descr={
+        <>
+          К сожалению, возникла проблема при отправке вашего заказа. Мы приносим извинения за неудобства. Пожалуйста, попробуйте еще раз позже или свяжитесь с нашей службой поддержки по номеру{" "}
+          <a href="tel:+996501222299">+996 501 222 299</a> или по электронной почте{" "}
+          <a href="mailto:support@example.com">support@example.com</a>. Мы постараемся помочь вам решить эту проблему. Благодарим за ваше терпение и понимание.
+        </>
+      }
+    />
+  ) : null
+} */}
 
         </>
     )
 }
+
 
 const Message = ({messageState = false, img, title, descr}) => {
   return (
