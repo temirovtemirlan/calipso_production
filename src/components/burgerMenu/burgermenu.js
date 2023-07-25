@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import './burgermenu.scss';
 
-const BurgerMenu = ({toggled, mobileCloseBurgerMenu, handleToggleBurger}) => {
+const BurgerMenu = ({toggled, mobileCloseBurgerMenu, handleToggleBurger,handleChangeLanguage}) => {
     const linkRef = useRef();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const BurgerMenu = ({toggled, mobileCloseBurgerMenu, handleToggleBurger}) => {
                             <path d="M13.1004 34.6871C14.8229 34.6871 16.2193 33.2907 16.2193 31.5682C16.2193 29.8456 14.8229 28.4492 13.1004 28.4492C11.3778 28.4492 9.98145 29.8456 9.98145 31.5682C9.98145 33.2907 11.3778 34.6871 13.1004 34.6871Z" stroke="black" strokeMiterlimit="10"/>
                         </svg>
                         </button>
-                        <button className="accent__btn accent__btn--dark">RU ↓</button>
+                        <button onClick={handleChangeLanguage} className="accent__btn accent__btn--dark">RU ↓</button>
                     </div>
                 </nav>
             </div>

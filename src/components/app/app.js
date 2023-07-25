@@ -23,6 +23,8 @@
 
     import historyImg from '../../img/historyimg.png'; 
     import fuller from '../../server/content.json';
+import i18n from "../../18n";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -182,7 +184,10 @@
         const handleToggleBurger = () => {
             setBurger(!burger);
         }
-        
+
+        // change language
+
+        const { t } = useTranslation();
         return (
             <>
             <Wrapper loader={loader}>

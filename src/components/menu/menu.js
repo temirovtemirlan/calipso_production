@@ -1,9 +1,27 @@
+// menu.js
 import React, { useRef } from "react";
 import Logo from '../../img/logo-calipso.svg';
 import './menu.scss';
+import { useTranslation } from "react-i18next";
+import i18n from "../../18n";
+import useLocalStorage from '../../hooks/use-localstorage'
 
 const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burgerToOpen}) => {
     let menudRef = useRef();
+
+        // change language
+        const { t, i18n } = useTranslation();
+        const [language, setLanguage] = useLocalStorage('language', 'ru');
+
+        const handleChangeLanguage = () => {
+            if (language === 'ru') {
+                i18n.changeLanguage('kg');
+                setLanguage('kg');
+            } else if (language === 'kg') {
+                i18n.changeLanguage('ru');
+                setLanguage('ru')
+            }
+        }
 
     return (    
         <div className="menu__inner d-flex justify-content-between w-100 align-items-center" style={{paddingTop: paddingT, paddingBottom: paddingB}}>
@@ -23,7 +41,7 @@ const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burger
                     <path d="M13.1004 34.6871C14.8229 34.6871 16.2193 33.2907 16.2193 31.5682C16.2193 29.8456 14.8229 28.4492 13.1004 28.4492C11.3778 28.4492 9.98145 29.8456 9.98145 31.5682C9.98145 33.2907 11.3778 34.6871 13.1004 34.6871Z" stroke="white" strokeMiterlimit="10"/>
                 </svg>
                 </button>
-                <button className="accent__btn">RU ↓</button>
+                <button onClick={handleChangeLanguage} className="accent__btn">{`${language} ↓`}</button>
             </nav>
             <button ref={menudRef} className="burgerMenus menud" onClick={burgerToOpen}>
                 <div className="burgerMenus__liness">

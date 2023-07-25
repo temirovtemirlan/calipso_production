@@ -9,12 +9,15 @@ import SwiperCore, { Navigation, Autoplay, EffectFade, Pagination } from 'swiper
 import './header.scss';
 import ButtonSwitch from "../button-slider/";
 import banner from '../../img/bg.png'
+import { useTranslation } from "react-i18next";
 SwiperCore.use([Navigation, Autoplay, EffectFade, Pagination]);
 
 
-const Header = ({ cartToOpen, burgerToggle, handleOpenBurgerMenu, burgerToOpen }) => {
+const Header = ({ cartToOpen, burgerToggle, handleOpenBurgerMenu, burgerToOpen, header }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const swiperRef = useRef(null);
+
+    const { t } = useTranslation();
 
     const handleSlideChange = (swiper) => {
         // Отключаем возможность прокрутки после первого изменения слайда
@@ -31,7 +34,7 @@ const Header = ({ cartToOpen, burgerToggle, handleOpenBurgerMenu, burgerToOpen }
                         </div>
                     </div>
                     <div className="header__slogan header__container header__slogan--mt">
-                        <h1 className="header__title header__title--mb">Чистейшая <br /> артезианская вода <br /> из глубин земли</h1>
+                        <h1 className="header__title header__title--mb">{t('ЧИСТЕЙШАЯ АРТЕЗИАНСКАЯ ВОДА ИЗ ГЛУБИН ЗЕМЛИ')}</h1>
                         <a className="accent__btn accent__btn--lg" href="#catalog">Купить сейчас</a>
                     </div>
                 </div>
