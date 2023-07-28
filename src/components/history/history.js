@@ -1,8 +1,11 @@
 // history.js
 import React from "react";
 import './history.scss';
+import { useTranslation } from "react-i18next";
+import poster from '../../img/poster.png';
 
 const History = ({bgColor,title,description,showButton, img, list, setId }) => {
+  const { t } = useTranslation();
     return (
         <>
         {/* aboutcompany */}
@@ -22,10 +25,12 @@ const History = ({bgColor,title,description,showButton, img, list, setId }) => {
                                 {description}
                             </p>
 
-                            {showButton ? <a className="accent__btn accent__btn--lg link__btn" href="#catalog">Купить сейчас</a> : null}
+                            {showButton ? <a className="accent__btn accent__btn--lg link__btn" href="#catalog">{t('header-btn')}</a> : null}
                         </div>
 
-                        <div data-aos="fade-left" data-aos-duration="1400" className="col-lg-6 col-md-12 history__img"><img className="w-100" src={img} alt="image"/></div>
+                        <div data-aos="fade-left" data-aos-duration="1400" className="col-lg-6 col-md-12 history__img">
+                          <video poster={poster} playsInline className="w-100" src="https://calipso.kg/video-phone.mp4" controls controlsList="nodownload"></video>
+                    </div>
                     </div>
 
                 </div>
@@ -37,6 +42,7 @@ const History = ({bgColor,title,description,showButton, img, list, setId }) => {
 export default History;
 
 const ListItem = ({ data }) => {
+    const {t} = useTranslation();
     return (
       <>
         <ul className="history__list history__list--mx">

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 
+/*
+    я подключил библиотеку i18next к react, у меня задача есть папка locales внутри есть две папки /kg /ru от туда  мы получаем
+    
+    
+    найти топ 5 API ключей
+*/
+
 const useLocalStorage = (key, defualtValue) => {
     const [storedValue, setStoredValue] = useState(() => {
         try{

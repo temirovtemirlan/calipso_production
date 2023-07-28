@@ -6,6 +6,8 @@
     background-color: #fff;
     top: 0;
     left: 0;
+    overflow: auto;
+    padding: 100px 0;
 
     transition: all .2s ease-in 0s;
 
@@ -39,7 +41,14 @@
         background-color: #f6f6f6;
     }
 }
-
+.burgerMenu__btn {
+    background-color: transparent;
+    font-size: 18px ;
+    border: 1px solid #000;
+    border-radius: 30px;
+    
+    padding: 7px 20px 10px 20px;
+}
 @media (orientation: portrait)  {
     .form__inner {
         overflow-y: scroll;

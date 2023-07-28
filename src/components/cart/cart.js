@@ -2,10 +2,12 @@
 import React, {useRef, useEffect} from "react";
 import './cart.scss';
 import emptyBottle from '../../img/emptyBottle.svg';
+import { useTranslation } from "react-i18next";
 
 const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, handleOrderOfProduct, cartSettings}) => {
 
     const popupRef = useRef();
+    const { t } = useTranslation();
 
     // const useClickOutSide
     
@@ -46,12 +48,12 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                                 <div className="d-flex justify-content-between">
                                                 <div className="d-flex w-100 flex-column">
                                                     <div className="d-flex  justify-content-between settings__item">
-                                                        <span>Стоимость: </span>
+                                                        <span>{t('catalog.carts.price')} </span>
                                                         <b>{item.price} сом</b>
                                                     </div>
 
                                                     <div className="d-flex  justify-content-between settings__item">
-                                                        <span>Объем: </span>
+                                                        <span>{t('catalog.carts.vol')}: </span>
                                                         <b>{item.char}</b>
                                                     </div>
 
@@ -124,8 +126,8 @@ const Cart = ({handleCloseCart, opened, item, addToCart, removeFromCart, increas
                                 <div className="cart-empty__inner d-flex flex-column align-items-center"> 
                                     <div><img src={emptyBottle} alt="empty" /></div>
                                     <div className="cart-empty__content text-center">
-                                        <h4>В корзине пока нет товаров</h4>
-                                        <p>Ваша корзина ощущается легкой как вода. Добавьте продукты и наслаждайтесь вкусом артезианской воды</p>
+                                        <h4>{t('carts.title')}</h4>
+                                        <p>{t('carts.descr')}</p>
                                     </div>
                                 </div>
                             </div>

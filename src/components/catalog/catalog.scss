@@ -43,3 +43,8 @@
 .catalog__img {
     object-fit: cover;
 }
+@media (max-width: 450px) {
+    .product__inner {
+        align-items: center !important;
+    }
+}

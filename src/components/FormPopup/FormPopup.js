@@ -7,12 +7,15 @@ import successImg from '../../img/success.svg';
 import emptyImg from '../../img/info.svg';
 import errorImg from '../../img/error.svg';
 import { CSSTransition } from "react-transition-group";
+import { useTranslation } from "react-i18next";
 
 
 const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setPopup}) => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+
+    const { t } = useTranslation();
 
     // Message
     const [successMessage, setSuccessMessage] = useState(false);
@@ -50,11 +53,6 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
       const handleAddressChange = (event) => {
         setAddress(event.target.value);
       };
-    
-
-    // const formSendReset = (e) => {
-    //     e.preventDefault();
-    // }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -85,7 +83,7 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
           );
     
           if (response.ok) {
-            console.log("Сообщение успешно отправлено в Telegram!");
+            // console.log("Сообщение успешно отправлено в Telegram!");
 
               setName("");
               setPhone("");
@@ -93,7 +91,7 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
               setSuccessMessage(!successMessage);
               clearCart();
           } else {
-            console.error("Ошибка при отправке сообщения в Telegram.");
+            // console.error("Ошибка при отправке сообщения в Telegram.");
           setErrorMessage(!errorMessage)
 
           }
@@ -111,47 +109,29 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
       if (emptyMessage) {
         const timer1 = setTimeout(() => {
           setEmptyMessage(false);
-          console.log("the notification inmount");
+          // console.log("the notification inmount");
         }, 3000);
 
         return () => {
           clearTimeout(timer1);
-          console.log("the notification is deleted");
+          // console.log("the notification is deleted");
         }
       }
 
       if (errorMessage) {
         const timer3 = setTimeout(() => {
           setErrorMessage(false);
-          console.log("the notification inmount");
+          // console.log("the notification inmount");
         }, 3000);
         
         return () => {
           clearTimeout(timer3);
-          console.log("the notification is deleted"); 
+          // console.log("the notification is deleted"); 
         }
       }
 
     }, [successMessage, emptyMessage, errorMessage]);
-    /*
-          const timer1 = setTimeout(() => {
-        setSuccessMessage(false);
-        console.log('setSuccessMessage(false) 1');
-      }, 3000);
-      const timer2 = setTimeout(() => {
-        setEmptyMessage(false);
-      }, 2000);
-      const timer3 = setTimeout(() => {
-        setErrorMessage(false)
-      }, 5000);
-    
-      return () => {
-        clearTimeout(timer1);
-        console.log('setSuccessMessage(false) 2');
-        clearTimeout(timer2);
-        clearTimeout(timer3);
-      }
-    */
+
     return (
         <>
         <div className="form__order">
@@ -169,7 +149,7 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
             <div className="form__block d-flex">
                 <div className="form__list d-flex flex-column">
                 <h2 className="form__title">
-                В заказе {quantity} товаров
+                {t('carts.order-1')} {quantity} {t('carts.order-2')}
                 </h2>
 
                 <div className="form__scroll">
@@ -185,20 +165,23 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
                                             <h4 className="cart__descr">{item.descr}</h4>
                                             <div className="d-flex justify-content-between">
                                             <div className="d-flex w-100 flex-column">
+
                                                 <div className="d-flex  justify-content-between settings__item">
-                                                    <span>Количество: </span>
-                                                    <b>{item.quantity}</b>
+                                                    <span>{t('catalog.carts.price')} </span>
+                                                    <b>{item.price} сом</b>
                                                 </div>
 
                                                 <div className="d-flex  justify-content-between settings__item">
-                                                    <span>Объем: </span>
+                                                    <span>{t('catalog.carts.vol')} </span>
                                                     <b>{item.char} / {item.volume}</b>
                                                 </div>
 
                                                 <div className="d-flex  justify-content-between settings__item">
-                                                    <span>Цена: </span>
-                                                    <b>{item.price} сом</b>
+                                                    <span>{t('catalog.carts.quan')} </span>
+                                                    <b>{item.quantity}</b>
                                                 </div>
+
+
 
                                             </div>
                                             </div>
@@ -212,17 +195,17 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
                 </div>
                 <div className="form__price-total d-flex justify-content-lg-end align-items-center" style={{marginRight: "50px"}}>
                     <h2 className="form__title form__price">
-                        Итоговая сумма: {totalPrice} сом
+                        {t('carts.price')}: {totalPrice} сом
                     </h2>
                 </div>
                 </div>
                 <div className="form__form">
-                    <h2 className="form__title form__subject">Закажите артезианскую <br /> воду Calipso прямо сейчас!</h2>
+                    <h2 className="form__title form__subject">{t("carts.form")}</h2>
                     <form onSubmit={handleSubmit} className="form__popup-form d-flex flex-column" action="POST">
                         <input
                             className="form__popup-input"
                             type="text"
-                            placeholder="Введите ваше имя"
+                            placeholder={t('form.input.input-2')}
                             onChange={handleNameChange}
                             value={name}
                             />
@@ -238,7 +221,7 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
                         <input
                             className="form__popup-input"
                             type="text"
-                            placeholder="Введите адрес доставки"
+                            placeholder={t('form.input.input-1')}
                             onChange={handleAddressChange}
                             value={address}
                             />
@@ -246,7 +229,7 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
                             type="submit"
                             className="form__popup-btn accent__btn accent__btn--dark accent--active"
                         >
-                        Отправить
+                        {t('form.btn')}
                         </button>
                     </form>
                 </div>
@@ -255,45 +238,6 @@ const FormPopup = ({item, clearCart,handlePopupController, popup, quantity, setP
             
         </div>
         </div>
-
-        <CSSTransition in={emptyMessage} timeout={300} unmountOnExit>
-          <div className="form__popup-test">this is test</div>
-        </CSSTransition>
-        {/* {
-  successMessage ? (
-    <Message
-      messageState={successMessage}
-      img={successImg}
-      title={"Заказ получен!"}
-      descr={
-        "Мы свяжемся с вами в ближайшее время для подтверждения и организации доставки."
-      }
-    />
-  ) : emptyMessage ? (
-    <Message
-      messageState={emptyMessage}
-      img={emptyImg}
-      title={"Пожалуйста заполните форму!"}
-      descr={
-        "Просим вас внимательно заполнить все поля, чтобы мы могли связаться с вами и организовать доставку"
-      }
-    />
-  ) : errorMessage ? (
-    <Message
-      messageState={errorMessage}
-      img={errorImg}
-      title={"Не удалось отправить заказ!"}
-      descr={
-        <>
-          К сожалению, возникла проблема при отправке вашего заказа. Мы приносим извинения за неудобства. Пожалуйста, попробуйте еще раз позже или свяжитесь с нашей службой поддержки по номеру{" "}
-          <a href="tel:+996501222299">+996 501 222 299</a> или по электронной почте{" "}
-          <a href="mailto:support@example.com">support@example.com</a>. Мы постараемся помочь вам решить эту проблему. Благодарим за ваше терпение и понимание.
-        </>
-      }
-    />
-  ) : null
-} */}
-
         </>
     )
 }

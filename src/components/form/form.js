@@ -7,6 +7,7 @@ import ru from '../../lang/ru.json';
 import successImg from '../../img/success.svg';
 import emptyImg from '../../img/info.svg';
 import errorImg from '../../img/error.svg';
+import { useTranslation } from "react-i18next";
 
 
 const Form = () => {
@@ -93,18 +94,20 @@ const Form = () => {
     }
   });
 
+  const {t} = useTranslation();
+
   return (
     <>
       <section  id="contacts">
         <div className="contact contact--bg">
           <div className="contact__container contact__inner contact--px contact--py">
-            <h2 className="contact__title title">связаться с нами</h2>
+            <h2 className="contact__title title">{t("form.title")}</h2>
             <div className="row d-flex contact__forms">
               <div className="col-lg-6 col-md-12">
                 <div className="contact__descr d-flex flex-column">
-                  <b className="contact__headline">Получить консультацию нашего специалиста</b>
+                  <b className="contact__headline">{t("form.sub")}</b>
                   <p className="contact__content">
-                    Нажимая на кнопку, я соглашаюсь на обработку персональных данных и с правилами пользования Платформой
+                  {t("form.descr")}
                   </p>
                 </div>
               </div>
@@ -135,7 +138,7 @@ const Form = () => {
                       type="text"
                     />
                   </div>
-                  <button type="submit" className="accent__btn contact__btn">Отправить</button>
+                  <button type="submit" className="accent__btn contact__btn">{t('form.btn')}</button>
                 </form>
               </div>
             </div>
@@ -144,11 +147,11 @@ const Form = () => {
       </section>
 
        { successMessage ? (
-         <Message messageState={successMessage} img={successImg} title={"Спасибо за ваше сообщение!"} descr={"Мы получили ваши контактные данные и скоро свяжемся с вами."}/>
+         <Message messageState={successMessage} img={successImg} title={t('notifications.success.title')} descr={t('notifications.success.descr')}/>
        ) : emptyMessage ? (
-        <Message messageState={emptyMessage} img={emptyImg} title={"Пожалуйста, заполните все поля!"} descr={"Для того, чтобы наш колл-центр мог связаться с вами, пожалуйста, заполните все обязательные поля формы."}/>
+        <Message messageState={emptyMessage} img={emptyImg} title={t('notifications.empty.title')} descr={t('notifications.empty.descr')}/>
        ) : errorMessage ? (
-         <Message messageState={errorMessage} img={errorImg} title={"Ошибка при отправке"} descr={"К сожалению, произошла ошибка при отправке вашего сообщения. Пожалуйста, повторите попытку позже или свяжитесь с нашей службой поддержки."}/>
+         <Message messageState={errorMessage} img={errorImg} title={t('notifications.error.title')} descr={t('notifications.error.descr')}/>
        ) : null
        }
     </>

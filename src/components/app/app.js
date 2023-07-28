@@ -23,8 +23,8 @@
 
     import historyImg from '../../img/historyimg.png'; 
     import fuller from '../../server/content.json';
-import i18n from "../../18n";
-import { useTranslation } from "react-i18next";
+    import i18n from "../../18n";
+    import { useTranslation } from "react-i18next";
 
 
 
@@ -39,6 +39,7 @@ import { useTranslation } from "react-i18next";
         const targetRef = useRef(null);
         const fixedCartRef = useRef(null);
         const catalogRef = useRef(null);
+        const { t } = useTranslation();
 
         /* закрытие popup окна */
         const handleCloseCart = () => {
@@ -147,11 +148,11 @@ import { useTranslation } from "react-i18next";
               setShowCookieNotification(false);
             }
         }, []);
-        
-        // Обработчик согласия с использованием файлов cookie
+    
+        console.log(t('clean-water.list'))
         const handleAccept = () => {
             
-            Cookies.set("cookieConsent", true, { expires: 30 }); // Устанавливаем куки на 30 дней
+            Cookies.set("cookieConsent", true, { expires: 30 }); 
             setShowCookieNotification(false);
         };
 
@@ -187,7 +188,12 @@ import { useTranslation } from "react-i18next";
 
         // change language
 
-        const { t } = useTranslation();
+        const cleanWaterList = [
+            { title: t("clean-water.list.list-01") },
+            { title: t("clean-water.list.list-02") },
+            { title: t("clean-water.list.list-03") },
+        ]
+
         return (
             <>
             <Wrapper loader={loader}>
@@ -197,12 +203,12 @@ import { useTranslation } from "react-i18next";
                 <FixedHead burger={burger} handleToggleBurger={handleToggleBurger} cartToOpen={handleCloseCart}/>
                 <Header cartToOpen={handleCloseCart} burgerToOpen={handleToggleBurger}/>
                 <About/>
-                <History setId={"aboutcompany"} bgColor={"#3AB8FF"} title={"история"} description={fuller.contentHistory} showButton={true} img={historyImg} />
+                <History setId={"aboutcompany"} bgColor={"#3AB8FF"} title={t('history.title')} description={t('history.descr')} showButton={true} img={historyImg} />
                 <Product/>
                 
-                <Catalog catalogRef={catalogRef} allProducts={fuller.allProducts} id="catalog" addToCart={addToCart}/>
+                <Catalog catalogRef={catalogRef} id="catalog" addToCart={addToCart}/>
 
-                <History bgColor={"#6EB772"} title={"Чистая вода"} list={fuller.cleanWater} description={fuller.contentFilter} showButton={false} img={historyImg} />
+                <History list={cleanWaterList} bgColor={"#6EB772"} title={t("clean-water.title")} description={t("clean-water.descr")} showButton={false} img={historyImg} />
                 <Form/>
                 <Footer/>
                 <Cart

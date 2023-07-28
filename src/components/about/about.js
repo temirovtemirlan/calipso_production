@@ -4,8 +4,12 @@ import aboutTwo from '../../img/about__img-02.svg';
 import aboutThree from '../../img/about__img-03.svg';
 import AOS from 'aos';
 import './about.scss';
+import { useTranslation } from "react-i18next";
 
 const About = () => {
+
+    const { t } = useTranslation();
+
 
     useEffect(() => {
         AOS.init();
@@ -14,22 +18,22 @@ const About = () => {
     const aboutItems = [
         {   
             img: aboutOne,
-            title: "Качество воды «Calipso",
-            description: "Вода «Calipso» натурального происхождения из артезианской скважины глубиной 178 м. Завод по добыче и розливу воды расположен у подножия снежных вершин - на южном склоне горного хребта Ысык-Ата, на высоте 2023 м над уровнем моря.",
+            title: t("about.block-1.title"),
+            description: t("about.block-1.descr"),
             delay: 200,
             duration: 1500
         },
         {
-            title: "СВОЙСТВА И СОСТАВ CALIPSO",
+            title: t("about.block-2.title"),
             img: aboutTwo,
-            description: "Скважина была пробурена, чтобы открыть источник пресной воды. Вместо пресной воды была обнаружена «живая» питьевая вода, с хлоридно-сульфатно-натриевым содержанием и уникальным природным pH = 7,8.",
+            description: t("about.block-2.descr"),
             delay: 200,
             duration: 1500
         },
         {
-            title: "КАЛИПСО – ИСТОЧНИК ЗДОРОВЬЯ",
+            title: t("about.block-3.title"),
             img: aboutThree,
-            description: "Мы работаем для того, чтобы у каждого была возможность пить вкусную, полезную воду и быть здоровым.  Экологичность, чистота, природная польза и вкус – 4 идеальных составляющих воды Калипсо. При регулярном употреблении воды Calipso: (Пиктограммки и надписи) •  Улучшается работа мозга •  Ускоряется метаболизм •  Кожа становится чистой •  Повышается продуктивность Растет энергияУкрепляются мышцы и кости  Выводятся токсины",
+            description: t("about.block-3.descr"),
             delay: 200,
             duration: 1500
         }
@@ -40,8 +44,7 @@ const About = () => {
         <section id="water">
             <div className="about">
                 <div className="about__inner about__container">
-                    <h2 className="about__title title about__title--my">о воде</h2>
-
+                    <h2 className="about__title title about__title--my">{t("about.title")}</h2>
                     <div className="row about__block d-flex justify-content-center w-100">
                         {aboutItems.map((data, index) => {
                             const imageNumber = (index + 1).toString().padStart(2, '0');

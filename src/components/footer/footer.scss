@@ -45,7 +45,8 @@
         margin-top: 130px;
         position: relative;
         p {
-            color: $light-color
+            color: $light-color;
+            margin-bottom: 0;
         }
         &::before {
             content: "";

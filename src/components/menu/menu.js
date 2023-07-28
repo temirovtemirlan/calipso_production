@@ -27,10 +27,10 @@ const Menu = ({fixedMenu = false, cartToOpen, bgMenu, paddingT, paddingB, burger
         <div className="menu__inner d-flex justify-content-between w-100 align-items-center" style={{paddingTop: paddingT, paddingBottom: paddingB}}>
             <div className="header__logo"><img src={Logo} alt="calipso"/></div>
             <nav className={`header__menu d-flex align-items-center`}>
-                <a className="header__link link" href="#water">О воде</a>
-                <a className="header__link link" href="#aboutcompany">О компании</a>
-                <a className="header__link link" href="#catalog">Каталог</a>
-                <a className="header__link link" href="#contacts">Связаться</a>
+                <a className="header__link link" href="#water">{t("nav.nav-1")}</a>
+                <a className="header__link link" href="#aboutcompany">{t("nav.nav-2")}</a>
+                <a className="header__link link" href="#catalog">{t("nav.nav-3")}</a>
+                <a className="header__link link" href="#contacts">{t("nav.nav-4")}</a>
                 <a className="header__link link header--number" href="tel:+996 501 222 299">+996 501 222 299</a>
 
                 <button  onClick={cartToOpen} className="add-to-card">
