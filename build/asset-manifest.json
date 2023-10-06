@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.acc701eb.css",
+    "main.js": "/static/js/main.f031b83b.js",
+    "static/js/787.fb6c8937.chunk.js": "/static/js/787.fb6c8937.chunk.js",
+    "static/media/bg.png": "/static/media/bg.556f33d6dcf0089c8025.png",
+    "static/media/product-img.png": "/static/media/product-img.7dd98815322b02f7a46f.png",
+    "static/media/gas.png": "/static/media/gas.5c0cd9838fdd30e8a883.png",
+    "static/media/water.png": "/static/media/water.61684918130c58819739.png",
+    "static/media/mountains.png": "/static/media/mountains.867b132a604ecb1901c5.png",
+    "static/media/limon.png": "/static/media/limon.0d1e1fa35e135d7a695b.png",
+    "static/media/land.png": "/static/media/land.a1d11808052a1e285c9e.png",
+    "static/media/historyimg.png": "/static/media/historyimg.616d959a2f8873836c45.png",
+    "static/media/ninteen.png": "/static/media/ninteen.0ea6c6ec16f0c578c53a.png",
+    "static/media/poster.png": "/static/media/poster.e5580b15fd6b834f2277.png",
+    "static/media/Prata-Regular.ttf": "/static/media/Prata-Regular.7c12a175b9eef335fd0b.ttf",
+    "static/media/emptyBottle.svg": "/static/media/emptyBottle.9e52a460fd0abc9150caa4ce8a8d1060.svg",
+    "static/media/about__img-03.svg": "/static/media/about__img-03.f51b374962e3af222eff27f6fdf4ce94.svg",
+    "static/media/logo-calipso.svg": "/static/media/logo-calipso.2b2d4f3f6edcd641dd46e0c0df01e960.svg",
+    "static/media/footer.svg": "/static/media/footer.d1d5509b3564f1ca415b.svg",
+    "static/media/about__img-01.svg": "/static/media/about__img-01.f3953c2665a668270c2d0cda4c22a581.svg",
+    "static/media/cookiePers.svg": "/static/media/cookiePers.052cc3f07d040b0c2f3ff5e140449f2a.svg",
+    "static/media/telegram.svg": "/static/media/telegram.aa50c78ee08dbc71580a91a6de439feb.svg",
+    "static/media/inst.svg": "/static/media/inst.bd75bd13ca45329ae70eaee42ecaea05.svg",
+    "static/media/info.svg": "/static/media/info.0d771d3950cc187387d30c9b2e48eac1.svg",
+    "static/media/error.svg": "/static/media/error.9c30b4478b4c7c2f8c8ff9000bc12bfc.svg",
+    "static/media/about__img-02.svg": "/static/media/about__img-02.5777e1bc4f9230cc1528ebe80a802125.svg",
+    "static/media/success.svg": "/static/media/success.657464d524ebd8dd9b72865e1e2d13c6.svg",
+    "index.html": "/index.html",
+    "main.acc701eb.css.map": "/static/css/main.acc701eb.css.map",
+    "main.f031b83b.js.map": "/static/js/main.f031b83b.js.map",
+    "787.fb6c8937.chunk.js.map": "/static/js/787.fb6c8937.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.acc701eb.css",
+    "static/js/main.f031b83b.js"
+  ]
+}
