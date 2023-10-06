@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Menu from "../menu/";
 import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import CalipsoBanner from '../../img/fadkf43j.mp4';
 import SwiperCore, { Navigation, Autoplay, EffectFade, Pagination } from 'swiper';
 // scss
 import './header.scss';
